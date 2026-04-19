@@ -245,6 +245,34 @@
         .sub-zone-name { color: var(--pink); }
         .sub-zone-time { color: #fff; text-shadow: 0 0 5px var(--cyan); }
 
+        /* Added custom scrollbar for large lists of cities */
+        .sub-zones {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px dashed rgba(0, 255, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 250px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .sub-zones::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .sub-zones::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 3px;
+        }
+        
+        .sub-zones::-webkit-scrollbar-thumb {
+            background: var(--cyan);
+            border-radius: 3px;
+            box-shadow: 0 0 5px var(--cyan);
+        }
+
         .error-message {
             display: none;
             color: red;
@@ -312,14 +340,14 @@
         const countryTimezones = {
             "afghanistan": ["Asia/Kabul"], "albania": ["Europe/Tirane"], "algeria": ["Africa/Algiers"], "andorra": ["Europe/Andorra"],
             "angola": ["Africa/Luanda"], "antigua and barbuda": ["America/Antigua"], "argentina": ["America/Argentina/Buenos_Aires"],
-            "armenia": ["Asia/Yerevan"], "australia": ["Australia/Sydney", "Australia/Adelaide", "Australia/Perth", "Australia/Brisbane"],
+            "armenia": ["Asia/Yerevan"], "australia": ["Australia/Sydney", "Australia/Adelaide", "Australia/Perth", "Australia/Brisbane", "Australia/Hobart", "Australia/Darwin", "Australia/Eucla"],
             "austria": ["Europe/Vienna"], "azerbaijan": ["Asia/Baku"], "bahamas": ["America/Nassau"], "bahrain": ["Asia/Bahrain"],
             "bangladesh": ["Asia/Dhaka"], "barbados": ["America/Barbados"], "belarus": ["Europe/Minsk"], "belgium": ["Europe/Brussels"],
             "belize": ["America/Belize"], "benin": ["Africa/Porto-Novo"], "bhutan": ["Asia/Thimphu"], "bolivia": ["America/La_Paz"],
             "bosnia and herzegovina": ["Europe/Sarajevo"], "bosnia": ["Europe/Sarajevo"], "botswana": ["Africa/Gaborone"],
-            "brazil": ["America/Sao_Paulo", "America/Manaus", "America/Rio_Branco"], "brunei": ["Asia/Brunei"], "bulgaria": ["Europe/Sofia"],
+            "brazil": ["America/Sao_Paulo", "America/Manaus", "America/Rio_Branco", "America/Noronha", "America/Belem", "America/Fortaleza", "America/Cuiaba", "America/Boa_Vista"], "brunei": ["Asia/Brunei"], "bulgaria": ["Europe/Sofia"],
             "burkina faso": ["Africa/Ouagadougou"], "burundi": ["Africa/Bujumbura"], "cambodia": ["Asia/Phnom_Penh"],
-            "cameroon": ["Africa/Douala"], "canada": ["America/Toronto", "America/Winnipeg", "America/Edmonton", "America/Vancouver"],
+            "cameroon": ["Africa/Douala"], "canada": ["America/Toronto", "America/Winnipeg", "America/Edmonton", "America/Vancouver", "America/Halifax", "America/St_Johns", "America/Regina", "America/Whitehorse", "America/Dawson_Creek"],
             "cape verde": ["Atlantic/Cape_Verde"], "central african republic": ["Africa/Bangui"], "chad": ["Africa/Ndjamena"],
             "chile": ["America/Santiago", "Pacific/Easter"], "china": ["Asia/Shanghai"], "colombia": ["America/Bogota"],
             "comoros": ["Indian/Comoro"], "congo": ["Africa/Brazzaville"], "costa rica": ["America/Costa_Rica"], "croatia": ["Europe/Zagreb"],
@@ -332,7 +360,7 @@
             "germany": ["Europe/Berlin"], "ghana": ["Africa/Accra"], "greece": ["Europe/Athens"], "grenada": ["America/Grenada"],
             "guatemala": ["America/Guatemala"], "guinea": ["Africa/Conakry"], "guinea-bissau": ["Africa/Bissau"], "guyana": ["America/Guyana"],
             "haiti": ["America/Port-au-Prince"], "honduras": ["America/Tegucigalpa"], "hungary": ["Europe/Budapest"],
-            "iceland": ["Atlantic/Reykjavik"], "india": ["Asia/Kolkata"], "indonesia": ["Asia/Jakarta", "Asia/Makassar", "Asia/Jayapura"],
+            "iceland": ["Atlantic/Reykjavik"], "india": ["Asia/Kolkata"], "indonesia": ["Asia/Jakarta", "Asia/Makassar", "Asia/Jayapura", "Asia/Pontianak"],
             "iran": ["Asia/Tehran"], "iraq": ["Asia/Baghdad"], "ireland": ["Europe/Dublin"], "israel": ["Asia/Jerusalem"],
             "italy": ["Europe/Rome"], "jamaica": ["America/Jamaica"], "japan": ["Asia/Tokyo"], "jordan": ["Asia/Amman"],
             "kazakhstan": ["Asia/Almaty", "Asia/Oral"], "kenya": ["Africa/Nairobi"], "kiribati": ["Pacific/Tarawa", "Pacific/Kiritimati"],
@@ -342,33 +370,33 @@
             "liechtenstein": ["Europe/Vaduz"], "lithuania": ["Europe/Vilnius"], "luxembourg": ["Europe/Luxembourg"],
             "madagascar": ["Indian/Antananarivo"], "malawi": ["Africa/Blantyre"], "malaysia": ["Asia/Kuala_Lumpur"],
             "maldives": ["Indian/Maldives"], "mali": ["Africa/Bamako"], "malta": ["Europe/Malta"], "marshall islands": ["Pacific/Majuro"],
-            "mauritania": ["Africa/Nouakchott"], "mauritius": ["Indian/Mauritius"], "mexico": ["America/Mexico_City", "America/Cancun", "America/Tijuana"],
+            "mauritania": ["Africa/Nouakchott"], "mauritius": ["Indian/Mauritius"], "mexico": ["America/Mexico_City", "America/Cancun", "America/Tijuana", "America/Hermosillo", "America/Mazatlan", "America/Chihuahua", "America/Monterrey"],
             "micronesia": ["Pacific/Pohnpei"], "moldova": ["Europe/Chisinau"], "monaco": ["Europe/Monaco"], "mongolia": ["Asia/Ulaanbaatar"],
             "montenegro": ["Europe/Podgorica"], "morocco": ["Africa/Casablanca"], "mozambique": ["Africa/Maputo"], "myanmar": ["Asia/Yangon"],
             "burma": ["Asia/Yangon"], "namibia": ["Africa/Windhoek"], "nauru": ["Pacific/Nauru"], "nepal": ["Asia/Kathmandu"],
-            "netherlands": ["Europe/Amsterdam"], "new zealand": ["Pacific/Auckland"], "nicaragua": ["America/Managua"],
+            "netherlands": ["Europe/Amsterdam"], "new zealand": ["Pacific/Auckland", "Pacific/Chatham"], "nicaragua": ["America/Managua"],
             "niger": ["Africa/Niamey"], "nigeria": ["Africa/Lagos"], "north macedonia": ["Europe/Skopje"], "norway": ["Europe/Oslo"],
             "oman": ["Asia/Muscat"], "pakistan": ["Asia/Karachi"], "palau": ["Pacific/Palau"], "palestine": ["Asia/Gaza"],
             "panama": ["America/Panama"], "papua new guinea": ["Pacific/Port_Moresby"], "paraguay": ["America/Asuncion"],
-            "peru": ["America/Lima"], "philippines": ["Asia/Manila"], "poland": ["Europe/Warsaw"], "portugal": ["Europe/Lisbon"],
+            "peru": ["America/Lima"], "philippines": ["Asia/Manila"], "poland": ["Europe/Warsaw"], "portugal": ["Europe/Lisbon", "Atlantic/Azores", "Atlantic/Madeira"],
             "qatar": ["Asia/Qatar"], "romania": ["Europe/Bucharest"], 
-            "russia": ["Europe/Moscow", "Asia/Yekaterinburg", "Asia/Novosibirsk", "Asia/Vladivostok"],
+            "russia": ["Europe/Moscow", "Asia/Yekaterinburg", "Asia/Novosibirsk", "Asia/Vladivostok", "Europe/Kaliningrad", "Europe/Samara", "Asia/Omsk", "Asia/Krasnoyarsk", "Asia/Irkutsk", "Asia/Yakutsk", "Asia/Magadan", "Asia/Kamchatka"],
             "rwanda": ["Africa/Kigali"], "saint kitts and nevis": ["America/St_Kitts"], "saint lucia": ["America/St_Lucia"],
             "saint vincent": ["America/St_Vincent"], "samoa": ["Pacific/Apia"], "san marino": ["Europe/San_Marino"],
             "sao tome and principe": ["Africa/Sao_Tome"], "saudi arabia": ["Asia/Riyadh"], "senegal": ["Africa/Dakar"],
             "serbia": ["Europe/Belgrade"], "seychelles": ["Indian/Mahe"], "sierra leone": ["Africa/Freetown"],
             "singapore": ["Asia/Singapore"], "slovakia": ["Europe/Bratislava"], "slovenia": ["Europe/Ljubljana"],
             "solomon islands": ["Pacific/Guadalcanal"], "somalia": ["Africa/Mogadishu"], "south africa": ["Africa/Johannesburg"],
-            "spain": ["Europe/Madrid"], "sri lanka": ["Asia/Colombo"], "sudan": ["Africa/Khartoum"], "suriname": ["America/Paramaribo"],
+            "spain": ["Europe/Madrid", "Atlantic/Canary"], "sri lanka": ["Asia/Colombo"], "sudan": ["Africa/Khartoum"], "suriname": ["America/Paramaribo"],
             "sweden": ["Europe/Stockholm"], "switzerland": ["Europe/Zurich"], "syria": ["Asia/Damascus"], "taiwan": ["Asia/Taipei"],
             "tajikistan": ["Asia/Dushanbe"], "tanzania": ["Africa/Dar_es_Salaam"], "thailand": ["Asia/Bangkok"], "togo": ["Africa/Lome"],
             "tonga": ["Pacific/Tongatapu"], "trinidad and tobago": ["America/Port_of_Spain"], "tunisia": ["Africa/Tunis"],
             "turkey": ["Europe/Istanbul"], "turkmenistan": ["Asia/Ashgabat"], "tuvalu": ["Pacific/Funafuti"], "uganda": ["Africa/Kampala"],
             "ukraine": ["Europe/Kiev"], "united arab emirates": ["Asia/Dubai"], "uae": ["Asia/Dubai"],
             "united kingdom": ["Europe/London"], "uk": ["Europe/London"], "great britain": ["Europe/London"],
-            "united states": ["America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles"],
-            "usa": ["America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles"],
-            "us": ["America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles"],
+            "united states": ["America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles", "America/Phoenix", "America/Anchorage", "America/Adak", "Pacific/Honolulu", "America/Detroit", "America/Boise", "America/Juneau"],
+            "usa": ["America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles", "America/Phoenix", "America/Anchorage", "America/Adak", "Pacific/Honolulu", "America/Detroit", "America/Boise", "America/Juneau"],
+            "us": ["America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles", "America/Phoenix", "America/Anchorage", "America/Adak", "Pacific/Honolulu", "America/Detroit", "America/Boise", "America/Juneau"],
             "uruguay": ["America/Montevideo"], "uzbekistan": ["Asia/Tashkent"], "vanuatu": ["Pacific/Efate"],
             "vatican": ["Europe/Vatican"], "venezuela": ["America/Caracas"], "vietnam": ["Asia/Ho_Chi_Minh"],
             "yemen": ["Asia/Aden"], "zambia": ["Africa/Lusaka"], "zimbabwe": ["Africa/Harare"]
