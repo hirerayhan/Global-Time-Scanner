@@ -11,7 +11,8 @@
             --cyan: #0ff;
             --pink: #f0f;
             --green: #0f0;
-            --dark-panel: rgba(0, 20, 30, 0.7);
+            --dark-panel: rgba(0, 20, 30, 0.6);
+            --glass-border: rgba(0, 255, 255, 0.2);
         }
 
         * {
@@ -29,106 +30,92 @@
             flex-direction: column;
             align-items: center;
             background-image: 
-                linear-gradient(rgba(2, 6, 23, 0.9), rgba(2, 6, 23, 0.9)),
+                radial-gradient(circle at 50% 0%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                linear-gradient(rgba(2, 6, 23, 0.95), rgba(2, 6, 23, 0.95)),
                 repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 255, 0.03) 2px, rgba(0, 255, 255, 0.03) 4px);
             overflow-x: hidden;
         }
 
         header {
             text-align: center;
-            margin-top: 50px;
-            margin-bottom: 30px;
+            margin-top: 40px;
+            margin-bottom: 25px;
             width: 100%;
-        }
-
-        .title-container {
-            display: inline-block;
         }
 
         h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: var(--cyan);
             text-shadow: 0 0 10px var(--cyan), 0 0 20px rgba(0, 255, 255, 0.5);
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: .15em solid var(--pink);
-            margin: 0 auto;
-            animation: typing 2.5s steps(30, end), blink-caret .75s step-end infinite;
-        }
-
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--pink); }
+            margin-bottom: 5px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
         }
 
         .subtitle {
             color: var(--green);
             font-size: 1.1rem;
-            opacity: 0.8;
-            margin-top: 10px;
+            opacity: 0.9;
             text-shadow: 0 0 5px var(--green);
+            letter-spacing: 1px;
         }
 
         .search-container {
             display: flex;
             gap: 15px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             position: relative;
             z-index: 10;
             width: 90%;
-            max-width: 600px;
+            max-width: 650px;
         }
 
         .search-input {
             flex: 1;
-            background: rgba(0, 255, 255, 0.05);
+            background: rgba(0, 20, 30, 0.8);
             border: 1px solid var(--cyan);
-            padding: 15px 20px;
-            font-size: 1.2rem;
+            padding: 15px 25px;
+            font-size: 1.3rem;
             color: var(--cyan);
             font-family: 'Share Tech Mono', monospace;
             outline: none;
-            box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.1), 0 0 10px rgba(0, 255, 255, 0.2);
+            box-shadow: inset 0 0 15px rgba(0, 255, 255, 0.1), 0 0 10px rgba(0, 255, 255, 0.2);
             transition: all 0.3s ease;
+            text-transform: capitalize;
         }
 
         .search-input:focus {
-            background: rgba(0, 255, 255, 0.1);
-            box-shadow: inset 0 0 15px rgba(0, 255, 255, 0.2), 0 0 20px rgba(0, 255, 255, 0.4);
+            background: rgba(0, 40, 60, 0.9);
+            box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.3), 0 0 25px rgba(0, 255, 255, 0.5);
             border-color: #fff;
         }
 
         .search-input::placeholder {
             color: rgba(0, 255, 255, 0.3);
+            text-transform: none;
         }
 
         .search-btn {
             background: transparent;
             color: var(--cyan);
             border: 1px solid var(--cyan);
-            padding: 0 30px;
-            font-size: 1.2rem;
+            padding: 0 35px;
+            font-size: 1.3rem;
             font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
             cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
         }
 
         .search-btn:hover {
             background: var(--cyan);
             color: var(--bg-color);
-            box-shadow: 0 0 20px var(--cyan);
+            box-shadow: 0 0 25px var(--cyan);
+            transform: scale(1.02);
         }
 
         .loader {
@@ -138,24 +125,38 @@
             text-shadow: 0 0 10px var(--pink);
             margin-bottom: 20px;
             animation: pulse 1s infinite;
+            letter-spacing: 2px;
         }
 
         @keyframes pulse {
-            0% { opacity: 0.5; }
-            50% { opacity: 1; }
-            100% { opacity: 0.5; }
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; text-shadow: 0 0 20px var(--pink); }
+        }
+
+        .error-message {
+            display: none;
+            color: #ff3333;
+            text-shadow: 0 0 15px #ff0000;
+            font-size: 1.5rem;
+            margin-top: 20px;
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            border: 1px solid #ff3333;
+            padding: 15px 30px;
+            background: rgba(255, 0, 0, 0.1);
         }
 
         .result-wrapper {
             display: none;
             width: 90%;
-            max-width: 600px;
+            max-width: 650px;
             position: relative;
-            padding: 3px;
-            background: linear-gradient(45deg, var(--cyan), var(--pink), var(--green), var(--cyan));
-            background-size: 300% 300%;
+            padding: 2px;
+            background: linear-gradient(45deg, var(--cyan), transparent, var(--pink), transparent, var(--green));
+            background-size: 200% 200%;
             animation: gradientBorder 4s ease infinite;
-            border-radius: 5px;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
         }
 
         @keyframes gradientBorder {
@@ -166,274 +167,388 @@
 
         .result-card {
             background: var(--dark-panel);
-            backdrop-filter: blur(5px);
-            padding: 30px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 35px;
             width: 100%;
             height: 100%;
             text-align: center;
             border-radius: 2px;
             position: relative;
-            overflow: hidden;
-        }
-
-        .scanline {
-            width: 100%;
-            height: 100px;
-            background: linear-gradient(0deg, transparent, rgba(0, 255, 255, 0.2), transparent);
-            position: absolute;
-            top: -100px;
-            left: 0;
-            animation: scanline 4s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes scanline {
-            0% { top: -100px; }
-            100% { top: 100%; }
         }
 
         .country-name {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--pink);
             text-transform: uppercase;
             margin-bottom: 5px;
-            text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+            text-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
+            font-weight: 900;
+            letter-spacing: 2px;
         }
 
         .timezone-name {
             color: var(--cyan);
-            font-size: 1rem;
-            margin-bottom: 25px;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
             opacity: 0.9;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .time-display {
-            font-size: 4rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4.5rem;
             color: #fff;
-            text-shadow: 0 0 20px var(--cyan), 0 0 40px var(--cyan);
+            text-shadow: 0 0 15px var(--cyan), 0 0 30px var(--cyan), 0 0 45px rgba(0, 255, 255, 0.5);
             margin-bottom: 10px;
             font-weight: bold;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
         .date-display {
             font-size: 1.5rem;
             color: var(--green);
             text-shadow: 0 0 10px var(--green);
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .cities-header {
+            text-align: left;
+            color: var(--pink);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .sub-zones {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px dashed rgba(0, 255, 255, 0.3);
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 15px 5px 15px 0;
+            text-align: left;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .sub-zones::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .sub-zones::-webkit-scrollbar-track {
+            background: rgba(0, 20, 30, 0.5);
+            border-left: 1px solid var(--glass-border);
+        }
+        
+        .sub-zones::-webkit-scrollbar-thumb {
+            background: var(--cyan);
+            border-radius: 0;
+            box-shadow: 0 0 10px var(--cyan);
         }
 
         .sub-zone-item {
             display: flex;
             justify-content: space-between;
-            background: rgba(0, 0, 0, 0.4);
-            padding: 10px 15px;
-            border-left: 2px solid var(--cyan);
-            font-size: 1rem;
-        }
-        
-        .sub-zone-name { color: var(--pink); }
-        .sub-zone-time { color: #fff; text-shadow: 0 0 5px var(--cyan); }
-
-        /* Added custom scrollbar for large lists of cities */
-        .sub-zones {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px dashed rgba(0, 255, 255, 0.3);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            max-height: 250px;
-            overflow-y: auto;
-            padding-right: 5px;
+            align-items: center;
+            background: rgba(0, 255, 255, 0.03);
+            padding: 12px 20px;
+            border-left: 3px solid var(--cyan);
+            transition: all 0.2s ease;
         }
 
-        .sub-zones::-webkit-scrollbar {
-            width: 6px;
+        .sub-zone-item:hover {
+            background: rgba(0, 255, 255, 0.1);
+            border-left-color: var(--pink);
+            transform: translateX(5px);
         }
         
-        .sub-zones::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 3px;
+        .sub-zone-name { 
+            color: #fff; 
+            font-size: 1.1rem;
+            letter-spacing: 1px;
         }
         
-        .sub-zones::-webkit-scrollbar-thumb {
-            background: var(--cyan);
-            border-radius: 3px;
-            box-shadow: 0 0 5px var(--cyan);
-        }
-
-        .error-message {
-            display: none;
-            color: red;
-            text-shadow: 0 0 10px red;
-            font-size: 1.5rem;
-            margin-top: 20px;
-            font-family: 'Orbitron', sans-serif;
-            text-align: center;
+        .sub-zone-time { 
+            color: var(--cyan); 
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+            font-size: 1.1rem;
+            text-align: right;
         }
 
         footer {
             margin-top: auto;
             padding: 30px;
             color: var(--cyan);
-            opacity: 0.5;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
+            opacity: 0.6;
+            font-size: 1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
         }
 
         @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
+            h1 { font-size: 2.2rem; }
             .search-container { flex-direction: column; }
             .search-btn { padding: 15px; }
-            .time-display { font-size: 2.8rem; }
-            .country-name { font-size: 1.5rem; }
+            .time-display { font-size: 3rem; }
+            .country-name { font-size: 2rem; }
+            .sub-zone-item { flex-direction: column; align-items: flex-start; gap: 5px; }
+            .sub-zone-time { text-align: left; color: var(--green); }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="title-container">
-            <h1>GLOBAL TIME SCANNER</h1>
-        </div>
-        <div class="subtitle">Search any country to view live time</div>
+        <h1>GLOBAL TIME SCANNER</h1>
+        <div class="subtitle">Search any country to view all city times</div>
     </header>
 
     <div class="search-container">
-        <input type="text" id="searchInput" class="search-input" placeholder="e.g., Japan, USA, France..." autocomplete="off" autofocus>
+        <input type="text" id="searchInput" class="search-input" placeholder="e.g. Bangladesh, United States, Japan..." autocomplete="off">
         <button id="searchBtn" class="search-btn">Scan</button>
     </div>
 
-    <div id="loader" class="loader">ESTABLISHING CONNECTION... [ |||||||||| ]</div>
-    <div id="errorMessage" class="error-message">ERROR: TERRITORY NOT FOUND IN DATABASE</div>
+    <div id="loader" class="loader">SCANNING MAINFRAME... [ |||||||||| ]</div>
+    <div id="errorMessage" class="error-message">ERROR: COUNTRY NOT FOUND IN DATABASE</div>
 
     <div id="resultWrapper" class="result-wrapper">
         <div class="result-card">
-            <div class="scanline"></div>
             <div id="countryName" class="country-name">Japan</div>
-            <div id="primaryTimezone" class="timezone-name">JST (Asia/Tokyo)</div>
+            <div id="primaryTimezone" class="timezone-name">GMT+9 (Tokyo)</div>
             <div id="primaryTime" class="time-display">00:00:00 AM</div>
             <div id="primaryDate" class="date-display">Jan 01, 2099</div>
             
-            <!-- Container for countries with multiple timezones -->
-            <div id="subZonesContainer" class="sub-zones" style="display: none;">
+            <div class="cities-header">Cities:</div>
+            <div id="subZonesContainer" class="sub-zones">
                 <!-- Populated via JS -->
             </div>
         </div>
     </div>
 
-    <footer>CYBER TIME SYSTEM v1.0</footer>
+    <footer>CYBER TIME SYSTEM v2.0</footer>
 
     <script>
-        // Comprehensive mapping of country names/codes to IANA Timezones
-        const countryTimezones = {
-            "afghanistan": ["Asia/Kabul", "Asia/Kabul|Kandahar", "Asia/Kabul|Herat"],
-            "albania": ["Europe/Tirane"], "algeria": ["Africa/Algiers", "Africa/Algiers|Oran"], "andorra": ["Europe/Andorra"],
-            "angola": ["Africa/Luanda"], "antigua and barbuda": ["America/Antigua"], "argentina": ["America/Argentina/Buenos_Aires", "America/Argentina/Cordoba", "America/Argentina/Rosario", "America/Argentina/Mendoza"],
-            "armenia": ["Asia/Yerevan"], "australia": ["Australia/Sydney", "Australia/Melbourne", "Australia/Brisbane", "Australia/Adelaide", "Australia/Perth", "Australia/Hobart", "Australia/Darwin"],
-            "austria": ["Europe/Vienna", "Europe/Vienna|Salzburg"], "azerbaijan": ["Asia/Baku"], "bahamas": ["America/Nassau"], "bahrain": ["Asia/Bahrain"],
-            "bangladesh": ["Asia/Dhaka", "Asia/Dhaka|Chittagong", "Asia/Dhaka|Sylhet", "Asia/Dhaka|Rajshahi", "Asia/Dhaka|Khulna", "Asia/Dhaka|Barisal", "Asia/Dhaka|Rangpur", "Asia/Dhaka|Mymensingh"],
-            "barbados": ["America/Barbados"], "belarus": ["Europe/Minsk"], "belgium": ["Europe/Brussels", "Europe/Brussels|Antwerp"],
-            "belize": ["America/Belize"], "benin": ["Africa/Porto-Novo"], "bhutan": ["Asia/Thimphu"], "bolivia": ["America/La_Paz", "America/La_Paz|Santa Cruz"],
-            "bosnia and herzegovina": ["Europe/Sarajevo"], "bosnia": ["Europe/Sarajevo"], "botswana": ["Africa/Gaborone"],
-            "brazil": ["America/Sao_Paulo", "America/Rio_Branco", "America/Manaus", "America/Belem", "America/Fortaleza", "America/Recife", "America/Cuiaba", "America/Boa_Vista", "America/Noronha", "America/Sao_Paulo|Rio de Janeiro"],
-            "brunei": ["Asia/Brunei"], "bulgaria": ["Europe/Sofia"], "burkina faso": ["Africa/Ouagadougou"], "burundi": ["Africa/Bujumbura"],
-            "cambodia": ["Asia/Phnom_Penh"], "cameroon": ["Africa/Douala", "Africa/Douala|Yaounde"],
-            "canada": ["America/Toronto", "America/Vancouver", "America/Montreal", "America/Calgary", "America/Edmonton", "America/Winnipeg", "America/Halifax", "America/St_Johns", "America/Regina"],
-            "cape verde": ["Atlantic/Cape_Verde"], "central african republic": ["Africa/Bangui"], "chad": ["Africa/Ndjamena"],
-            "chile": ["America/Santiago", "America/Punta_Arenas", "Pacific/Easter"],
-            "china": ["Asia/Shanghai", "Asia/Shanghai|Beijing", "Asia/Shanghai|Guangzhou", "Asia/Shanghai|Shenzhen", "Asia/Urumqi|Xinjiang"],
-            "colombia": ["America/Bogota", "America/Bogota|Medellin", "America/Bogota|Cali"],
-            "comoros": ["Indian/Comoro"], "congo": ["Africa/Brazzaville", "Africa/Kinshasa", "Africa/Lubumbashi"], "costa rica": ["America/Costa_Rica"],
-            "croatia": ["Europe/Zagreb"], "cuba": ["America/Havana"], "cyprus": ["Asia/Nicosia"], "czech republic": ["Europe/Prague"], "denmark": ["Europe/Copenhagen"],
-            "djibouti": ["Africa/Djibouti"], "dominica": ["America/Dominica"], "dominican republic": ["America/Santo_Domingo"],
-            "ecuador": ["America/Guayaquil", "America/Guayaquil|Quito", "Pacific/Galapagos"], "egypt": ["Africa/Cairo", "Africa/Cairo|Alexandria", "Africa/Cairo|Giza"],
-            "el salvador": ["America/El_Salvador"], "equatorial guinea": ["Africa/Malabo"], "eritrea": ["Africa/Asmara"], "estonia": ["Europe/Tallinn"],
-            "eswatini": ["Africa/Mbabane"], "ethiopia": ["Africa/Addis_Ababa"], "fiji": ["Pacific/Fiji"], "finland": ["Europe/Helsinki"],
-            "france": ["Europe/Paris", "Europe/Paris|Marseille", "Europe/Paris|Lyon", "Europe/Paris|Toulouse", "Europe/Paris|Nice"],
-            "gabon": ["Africa/Libreville"], "gambia": ["Africa/Banjul"], "georgia": ["Asia/Tbilisi"],
-            "germany": ["Europe/Berlin", "Europe/Berlin|Munich", "Europe/Berlin|Frankfurt", "Europe/Berlin|Hamburg", "Europe/Berlin|Cologne"],
-            "ghana": ["Africa/Accra"], "greece": ["Europe/Athens", "Europe/Athens|Thessaloniki"], "grenada": ["America/Grenada"],
-            "guatemala": ["America/Guatemala"], "guinea": ["Africa/Conakry"], "guinea-bissau": ["Africa/Bissau"], "guyana": ["America/Guyana"],
-            "haiti": ["America/Port-au-Prince"], "honduras": ["America/Tegucigalpa"], "hungary": ["Europe/Budapest"], "iceland": ["Atlantic/Reykjavik"],
-            "india": ["Asia/Kolkata", "Asia/Kolkata|Mumbai", "Asia/Kolkata|Delhi", "Asia/Kolkata|Bangalore", "Asia/Kolkata|Chennai", "Asia/Kolkata|Hyderabad", "Asia/Kolkata|Pune", "Asia/Kolkata|Ahmedabad"],
-            "indonesia": ["Asia/Jakarta", "Asia/Makassar", "Asia/Jayapura", "Asia/Pontianak", "Asia/Jakarta|Surabaya", "Asia/Makassar|Bali"],
-            "iran": ["Asia/Tehran", "Asia/Tehran|Mashhad", "Asia/Tehran|Isfahan"], "iraq": ["Asia/Baghdad", "Asia/Baghdad|Basra"],
-            "ireland": ["Europe/Dublin", "Europe/Dublin|Cork", "Europe/Dublin|Galway"], "israel": ["Asia/Jerusalem", "Asia/Jerusalem|Tel Aviv", "Asia/Jerusalem|Haifa"],
-            "italy": ["Europe/Rome", "Europe/Rome|Milan", "Europe/Rome|Naples", "Europe/Rome|Turin", "Europe/Rome|Florence"],
-            "jamaica": ["America/Jamaica"], "japan": ["Asia/Tokyo", "Asia/Tokyo|Osaka", "Asia/Tokyo|Kyoto", "Asia/Tokyo|Yokohama", "Asia/Tokyo|Sapporo", "Asia/Tokyo|Fukuoka"],
-            "jordan": ["Asia/Amman"], "kazakhstan": ["Asia/Almaty", "Asia/Oral", "Asia/Aqtau", "Asia/Aqtobe", "Asia/Qyzylorda"],
-            "kenya": ["Africa/Nairobi", "Africa/Nairobi|Mombasa"], "kiribati": ["Pacific/Tarawa", "Pacific/Kanton", "Pacific/Kiritimati"],
-            "korea": ["Asia/Seoul", "Asia/Seoul|Busan", "Asia/Seoul|Incheon"], "south korea": ["Asia/Seoul", "Asia/Seoul|Busan", "Asia/Seoul|Incheon"], "north korea": ["Asia/Pyongyang"],
-            "kuwait": ["Asia/Kuwait"], "kyrgyzstan": ["Asia/Bishkek"], "laos": ["Asia/Vientiane"], "latvia": ["Europe/Riga"],
-            "lebanon": ["Asia/Beirut"], "lesotho": ["Africa/Maseru"], "liberia": ["Africa/Monrovia"], "libya": ["Africa/Tripoli", "Africa/Tripoli|Benghazi"],
-            "liechtenstein": ["Europe/Vaduz"], "lithuania": ["Europe/Vilnius"], "luxembourg": ["Europe/Luxembourg"],
-            "madagascar": ["Indian/Antananarivo"], "malawi": ["Africa/Blantyre"], "malaysia": ["Asia/Kuala_Lumpur", "Asia/Kuching", "Asia/Kuala_Lumpur|George Town"],
-            "maldives": ["Indian/Maldives"], "mali": ["Africa/Bamako"], "malta": ["Europe/Malta"], "marshall islands": ["Pacific/Majuro", "Pacific/Kwajalein"],
-            "mauritania": ["Africa/Nouakchott"], "mauritius": ["Indian/Mauritius"],
-            "mexico": ["America/Mexico_City", "America/Cancun", "America/Tijuana", "America/Hermosillo", "America/Mazatlan", "America/Chihuahua", "America/Monterrey"],
-            "micronesia": ["Pacific/Pohnpei", "Pacific/Kosrae", "Pacific/Chuuk"], "moldova": ["Europe/Chisinau"], "monaco": ["Europe/Monaco"],
-            "mongolia": ["Asia/Ulaanbaatar", "Asia/Hovd", "Asia/Choibalsan"], "montenegro": ["Europe/Podgorica"], "morocco": ["Africa/Casablanca", "Africa/Casablanca|Rabat", "Africa/Casablanca|Marrakesh"],
-            "mozambique": ["Africa/Maputo"], "myanmar": ["Asia/Yangon", "Asia/Yangon|Mandalay"], "burma": ["Asia/Yangon"],
-            "namibia": ["Africa/Windhoek"], "nauru": ["Pacific/Nauru"], "nepal": ["Asia/Kathmandu", "Asia/Kathmandu|Pokhara"],
-            "netherlands": ["Europe/Amsterdam", "Europe/Amsterdam|Rotterdam", "Europe/Amsterdam|The Hague"],
-            "new zealand": ["Pacific/Auckland", "Pacific/Auckland|Wellington", "Pacific/Auckland|Christchurch", "Pacific/Chatham"],
-            "nicaragua": ["America/Managua"], "niger": ["Africa/Niamey"], "nigeria": ["Africa/Lagos", "Africa/Lagos|Abuja", "Africa/Lagos|Kano"],
-            "north macedonia": ["Europe/Skopje"], "norway": ["Europe/Oslo", "Europe/Oslo|Bergen"], "oman": ["Asia/Muscat"],
-            "pakistan": ["Asia/Karachi", "Asia/Karachi|Lahore", "Asia/Karachi|Islamabad", "Asia/Karachi|Rawalpindi", "Asia/Karachi|Peshawar"],
-            "palau": ["Pacific/Palau"], "palestine": ["Asia/Gaza", "Asia/Hebron"], "panama": ["America/Panama"], "papua new guinea": ["Pacific/Port_Moresby", "Pacific/Bougainville"],
-            "paraguay": ["America/Asuncion"], "peru": ["America/Lima", "America/Lima|Arequipa", "America/Lima|Cusco"],
-            "philippines": ["Asia/Manila", "Asia/Manila|Cebu City", "Asia/Manila|Davao City"], "poland": ["Europe/Warsaw", "Europe/Warsaw|Krakow", "Europe/Warsaw|Wroclaw"],
-            "portugal": ["Europe/Lisbon", "Atlantic/Azores", "Atlantic/Madeira", "Europe/Lisbon|Porto"], "qatar": ["Asia/Qatar"], "romania": ["Europe/Bucharest"],
-            "russia": ["Europe/Moscow", "Europe/Moscow|St Petersburg", "Asia/Yekaterinburg", "Asia/Novosibirsk", "Asia/Vladivostok", "Europe/Kaliningrad", "Europe/Samara", "Asia/Omsk", "Asia/Krasnoyarsk", "Asia/Irkutsk", "Asia/Yakutsk", "Asia/Magadan", "Asia/Kamchatka"],
-            "rwanda": ["Africa/Kigali"], "saint kitts and nevis": ["America/St_Kitts"], "saint lucia": ["America/St_Lucia"], "saint vincent": ["America/St_Vincent"],
-            "samoa": ["Pacific/Apia"], "san marino": ["Europe/San_Marino"], "sao tome and principe": ["Africa/Sao_Tome"],
-            "saudi arabia": ["Asia/Riyadh", "Asia/Riyadh|Jeddah", "Asia/Riyadh|Mecca", "Asia/Riyadh|Medina", "Asia/Riyadh|Dammam"],
-            "senegal": ["Africa/Dakar"], "serbia": ["Europe/Belgrade", "Europe/Belgrade|Novi Sad"], "seychelles": ["Indian/Mahe"], "sierra leone": ["Africa/Freetown"],
-            "singapore": ["Asia/Singapore"], "slovakia": ["Europe/Bratislava"], "slovenia": ["Europe/Ljubljana"], "solomon islands": ["Pacific/Guadalcanal"],
-            "somalia": ["Africa/Mogadishu"], "south africa": ["Africa/Johannesburg", "Africa/Johannesburg|Cape Town", "Africa/Johannesburg|Durban", "Africa/Johannesburg|Pretoria"],
-            "spain": ["Europe/Madrid", "Europe/Madrid|Barcelona", "Europe/Madrid|Valencia", "Europe/Madrid|Seville", "Atlantic/Canary"],
-            "sri lanka": ["Asia/Colombo", "Asia/Colombo|Kandy"], "sudan": ["Africa/Khartoum"], "suriname": ["America/Paramaribo"],
-            "sweden": ["Europe/Stockholm", "Europe/Stockholm|Gothenburg", "Europe/Stockholm|Malmo"], "switzerland": ["Europe/Zurich", "Europe/Zurich|Geneva", "Europe/Zurich|Basel"],
-            "syria": ["Asia/Damascus", "Asia/Damascus|Aleppo"], "taiwan": ["Asia/Taipei", "Asia/Taipei|Kaohsiung", "Asia/Taipei|Taichung"],
-            "tajikistan": ["Asia/Dushanbe"], "tanzania": ["Africa/Dar_es_Salaam"], "thailand": ["Asia/Bangkok", "Asia/Bangkok|Chiang Mai", "Asia/Bangkok|Phuket"],
-            "togo": ["Africa/Lome"], "tonga": ["Pacific/Tongatapu"], "trinidad and tobago": ["America/Port_of_Spain"], "tunisia": ["Africa/Tunis"],
-            "turkey": ["Europe/Istanbul", "Europe/Istanbul|Ankara", "Europe/Istanbul|Izmir"], "turkmenistan": ["Asia/Ashgabat"], "tuvalu": ["Pacific/Funafuti"],
-            "uganda": ["Africa/Kampala"], "ukraine": ["Europe/Kiev", "Europe/Kiev|Kharkiv", "Europe/Kiev|Odesa", "Europe/Kiev|Lviv"],
-            "united arab emirates": ["Asia/Dubai", "Asia/Dubai|Abu Dhabi", "Asia/Dubai|Sharjah"], "uae": ["Asia/Dubai", "Asia/Dubai|Abu Dhabi", "Asia/Dubai|Sharjah"],
-            "united kingdom": ["Europe/London", "Europe/London|Edinburgh", "Europe/London|Manchester", "Europe/London|Birmingham", "Europe/London|Glasgow"],
-            "uk": ["Europe/London", "Europe/London|Edinburgh", "Europe/London|Manchester", "Europe/London|Birmingham", "Europe/London|Glasgow"],
-            "great britain": ["Europe/London"], "england": ["Europe/London", "Europe/London|Manchester", "Europe/London|Birmingham"],
-            "united states": ["America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles", "America/Phoenix", "America/Anchorage", "America/Adak", "Pacific/Honolulu", "America/Detroit", "America/Boise", "America/Juneau", "America/New_York|Washington DC", "America/New_York|Miami", "America/Chicago|Houston", "America/Chicago|Dallas", "America/Los_Angeles|San Francisco", "America/Los_Angeles|Las Vegas", "America/Los_Angeles|Seattle"],
-            "usa": ["America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles", "America/Phoenix", "America/Anchorage", "America/Adak", "Pacific/Honolulu", "America/Detroit", "America/Boise", "America/Juneau", "America/New_York|Washington DC", "America/New_York|Miami", "America/Chicago|Houston", "America/Chicago|Dallas", "America/Los_Angeles|San Francisco", "America/Los_Angeles|Las Vegas", "America/Los_Angeles|Seattle"],
-            "us": ["America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles", "America/Phoenix", "America/Anchorage", "America/Adak", "Pacific/Honolulu", "America/Detroit", "America/Boise", "America/Juneau", "America/New_York|Washington DC", "America/New_York|Miami", "America/Chicago|Houston", "America/Chicago|Dallas", "America/Los_Angeles|San Francisco", "America/Los_Angeles|Las Vegas", "America/Los_Angeles|Seattle"],
-            "uruguay": ["America/Montevideo"], "uzbekistan": ["Asia/Tashkent", "Asia/Samarkand"], "vanuatu": ["Pacific/Efate"],
-            "vatican": ["Europe/Vatican"], "venezuela": ["America/Caracas"], "vietnam": ["Asia/Ho_Chi_Minh", "Asia/Ho_Chi_Minh|Hanoi", "Asia/Ho_Chi_Minh|Da Nang"],
-            "yemen": ["Asia/Aden"], "zambia": ["Africa/Lusaka"], "zimbabwe": ["Africa/Harare"],
-            
-            // Minor Territories & Islands
-            "hong kong": ["Asia/Hong_Kong"], "macau": ["Asia/Macau"], "greenland": ["America/Godthab", "America/Danmarkshavn", "America/Scoresbysund", "America/Thule"],
-            "puerto rico": ["America/Puerto_Rico", "America/Puerto_Rico|San Juan"], "guam": ["Pacific/Guam"], "bermuda": ["Atlantic/Bermuda"],
-            "antarctica": ["Antarctica/McMurdo", "Antarctica/Palmer", "Antarctica/Rothera", "Antarctica/Troll", "Antarctica/Vostok", "Antarctica/Casey", "Antarctica/Davis", "Antarctica/Mawson"],
-            "falkland islands": ["Atlantic/Stanley"], "french polynesia": ["Pacific/Tahiti", "Pacific/Marquesas", "Pacific/Gambier"],
-            "new caledonia": ["Pacific/Noumea"], "reunion": ["Indian/Reunion"], "western sahara": ["Africa/El_Aaiun"],
-            "vatican city": ["Europe/Vatican"], "kosovo": ["Europe/Belgrade|Pristina"], "faroe islands": ["Atlantic/Faroe"],
-            "gibraltar": ["Europe/Gibraltar"], "isle of man": ["Europe/Isle_of_Man"], "jersey": ["Europe/Jersey"], "guernsey": ["Europe/Guernsey"],
-            "cayman islands": ["America/Cayman"], "british virgin islands": ["America/Tortola"], "us virgin islands": ["America/St_Thomas"],
-            "american samoa": ["Pacific/Pago_Pago"], "northern mariana islands": ["Pacific/Saipan"], "french guiana": ["America/Cayenne"],
-            "guadeloupe": ["America/Guadeloupe"], "martinique": ["America/Martinique"], "mayotte": ["Indian/Mayotte"],
-            "saint pierre and miquelon": ["America/Miquelon"], "wallis and futuna": ["Pacific/Wallis"], "svalbard": ["Arctic/Longyearbyen"]
+        // Massive 195+ Country Database with 5-20 cities mapping to accurate IANA timezones
+        const worldDatabase = {
+            "afghanistan": { capital: "Kabul", timezone: "Asia/Kabul", cities: { "Kabul": "Asia/Kabul", "Kandahar": "Asia/Kabul", "Herat": "Asia/Kabul", "Mazar-i-Sharif": "Asia/Kabul", "Jalalabad": "Asia/Kabul" }},
+            "albania": { capital: "Tirana", timezone: "Europe/Tirane", cities: { "Tirana": "Europe/Tirane", "Durres": "Europe/Tirane", "Vlore": "Europe/Tirane", "Elbasan": "Europe/Tirane", "Shkoder": "Europe/Tirane" }},
+            "algeria": { capital: "Algiers", timezone: "Africa/Algiers", cities: { "Algiers": "Africa/Algiers", "Oran": "Africa/Algiers", "Constantine": "Africa/Algiers", "Annaba": "Africa/Algiers", "Batna": "Africa/Algiers" }},
+            "andorra": { capital: "Andorra la Vella", timezone: "Europe/Andorra", cities: { "Andorra la Vella": "Europe/Andorra", "Escaldes-Engordany": "Europe/Andorra", "Encamp": "Europe/Andorra", "Sant Julia de Loria": "Europe/Andorra", "La Massana": "Europe/Andorra" }},
+            "angola": { capital: "Luanda", timezone: "Africa/Luanda", cities: { "Luanda": "Africa/Luanda", "Lubango": "Africa/Luanda", "Huambo": "Africa/Luanda", "Benguela": "Africa/Luanda", "Cabinda": "Africa/Luanda" }},
+            "antigua and barbuda": { capital: "St. John's", timezone: "America/Antigua", cities: { "St. John's": "America/Antigua", "All Saints": "America/Antigua", "Liberta": "America/Antigua", "Bolans": "America/Antigua" }},
+            "argentina": { capital: "Buenos Aires", timezone: "America/Argentina/Buenos_Aires", cities: { "Buenos Aires": "America/Argentina/Buenos_Aires", "Cordoba": "America/Argentina/Cordoba", "Rosario": "America/Argentina/Rosario", "Mendoza": "America/Argentina/Mendoza", "San Miguel de Tucuman": "America/Argentina/Tucuman", "La Plata": "America/Argentina/Buenos_Aires", "Mar del Plata": "America/Argentina/Buenos_Aires", "Salta": "America/Argentina/Salta", "Santa Fe": "America/Argentina/San_Juan" }},
+            "armenia": { capital: "Yerevan", timezone: "Asia/Yerevan", cities: { "Yerevan": "Asia/Yerevan", "Gyumri": "Asia/Yerevan", "Vanadzor": "Asia/Yerevan", "Vagharshapat": "Asia/Yerevan", "Abovyan": "Asia/Yerevan" }},
+            "australia": { capital: "Canberra", timezone: "Australia/Sydney", cities: { "Sydney": "Australia/Sydney", "Melbourne": "Australia/Melbourne", "Brisbane": "Australia/Brisbane", "Perth": "Australia/Perth", "Adelaide": "Australia/Adelaide", "Gold Coast": "Australia/Brisbane", "Newcastle": "Australia/Sydney", "Canberra": "Australia/Sydney", "Hobart": "Australia/Hobart", "Darwin": "Australia/Darwin" }},
+            "austria": { capital: "Vienna", timezone: "Europe/Vienna", cities: { "Vienna": "Europe/Vienna", "Graz": "Europe/Vienna", "Linz": "Europe/Vienna", "Salzburg": "Europe/Vienna", "Innsbruck": "Europe/Vienna" }},
+            "azerbaijan": { capital: "Baku", timezone: "Asia/Baku", cities: { "Baku": "Asia/Baku", "Ganja": "Asia/Baku", "Sumqayit": "Asia/Baku", "Mingachevir": "Asia/Baku", "Lankaran": "Asia/Baku" }},
+            "bahamas": { capital: "Nassau", timezone: "America/Nassau", cities: { "Nassau": "America/Nassau", "Freeport": "America/Nassau", "West End": "America/Nassau", "Coopers Town": "America/Nassau", "Marsh Harbour": "America/Nassau" }},
+            "bahrain": { capital: "Manama", timezone: "Asia/Bahrain", cities: { "Manama": "Asia/Bahrain", "Riffa": "Asia/Bahrain", "Muharraq": "Asia/Bahrain", "Hamad Town": "Asia/Bahrain", "A'ali": "Asia/Bahrain" }},
+            "bangladesh": { capital: "Dhaka", timezone: "Asia/Dhaka", cities: { "Dhaka": "Asia/Dhaka", "Chittagong": "Asia/Dhaka", "Sylhet": "Asia/Dhaka", "Rajshahi": "Asia/Dhaka", "Khulna": "Asia/Dhaka", "Barisal": "Asia/Dhaka", "Rangpur": "Asia/Dhaka", "Mymensingh": "Asia/Dhaka", "Cox's Bazar": "Asia/Dhaka", "Comilla": "Asia/Dhaka", "Narayanganj": "Asia/Dhaka", "Gazipur": "Asia/Dhaka", "Jessore": "Asia/Dhaka", "Bogura": "Asia/Dhaka" }},
+            "barbados": { capital: "Bridgetown", timezone: "America/Barbados", cities: { "Bridgetown": "America/Barbados", "Speightstown": "America/Barbados", "Oistins": "America/Barbados", "Holetown": "America/Barbados" }},
+            "belarus": { capital: "Minsk", timezone: "Europe/Minsk", cities: { "Minsk": "Europe/Minsk", "Gomel": "Europe/Minsk", "Vitebsk": "Europe/Minsk", "Mogilev": "Europe/Minsk", "Brest": "Europe/Minsk" }},
+            "belgium": { capital: "Brussels", timezone: "Europe/Brussels", cities: { "Brussels": "Europe/Brussels", "Antwerp": "Europe/Brussels", "Ghent": "Europe/Brussels", "Charleroi": "Europe/Brussels", "Liege": "Europe/Brussels", "Bruges": "Europe/Brussels" }},
+            "belize": { capital: "Belmopan", timezone: "America/Belize", cities: { "Belize City": "America/Belize", "San Ignacio": "America/Belize", "Belmopan": "America/Belize", "Orange Walk": "America/Belize", "Dangriga": "America/Belize" }},
+            "benin": { capital: "Porto-Novo", timezone: "Africa/Porto-Novo", cities: { "Cotonou": "Africa/Porto-Novo", "Porto-Novo": "Africa/Porto-Novo", "Parakou": "Africa/Porto-Novo", "Djougou": "Africa/Porto-Novo", "Bohicon": "Africa/Porto-Novo" }},
+            "bhutan": { capital: "Thimphu", timezone: "Asia/Thimphu", cities: { "Thimphu": "Asia/Thimphu", "Phuntsholing": "Asia/Thimphu", "Paro": "Asia/Thimphu", "Gelephu": "Asia/Thimphu", "Samdrup Jongkhar": "Asia/Thimphu" }},
+            "bolivia": { capital: "La Paz", timezone: "America/La_Paz", cities: { "Santa Cruz de la Sierra": "America/La_Paz", "El Alto": "America/La_Paz", "La Paz": "America/La_Paz", "Cochabamba": "America/La_Paz", "Sucre": "America/La_Paz" }},
+            "bosnia and herzegovina": { capital: "Sarajevo", timezone: "Europe/Sarajevo", cities: { "Sarajevo": "Europe/Sarajevo", "Banja Luka": "Europe/Sarajevo", "Tuzla": "Europe/Sarajevo", "Zenica": "Europe/Sarajevo", "Mostar": "Europe/Sarajevo" }},
+            "botswana": { capital: "Gaborone", timezone: "Africa/Gaborone", cities: { "Gaborone": "Africa/Gaborone", "Francistown": "Africa/Gaborone", "Molepolole": "Africa/Gaborone", "Maun": "Africa/Gaborone", "Mogoditshane": "Africa/Gaborone" }},
+            "brazil": { capital: "Brasilia", timezone: "America/Sao_Paulo", cities: { "Sao Paulo": "America/Sao_Paulo", "Rio de Janeiro": "America/Sao_Paulo", "Brasilia": "America/Sao_Paulo", "Salvador": "America/Bahia", "Fortaleza": "America/Fortaleza", "Belo Horizonte": "America/Sao_Paulo", "Manaus": "America/Manaus", "Curitiba": "America/Sao_Paulo", "Recife": "America/Recife", "Porto Alegre": "America/Sao_Paulo", "Belem": "America/Belem" }},
+            "brunei": { capital: "Bandar Seri Begawan", timezone: "Asia/Brunei", cities: { "Bandar Seri Begawan": "Asia/Brunei", "Kuala Belait": "Asia/Brunei", "Seria": "Asia/Brunei", "Tutong": "Asia/Brunei", "Bangar": "Asia/Brunei" }},
+            "bulgaria": { capital: "Sofia", timezone: "Europe/Sofia", cities: { "Sofia": "Europe/Sofia", "Plovdiv": "Europe/Sofia", "Varna": "Europe/Sofia", "Burgas": "Europe/Sofia", "Ruse": "Europe/Sofia" }},
+            "burkina faso": { capital: "Ouagadougou", timezone: "Africa/Ouagadougou", cities: { "Ouagadougou": "Africa/Ouagadougou", "Bobo-Dioulasso": "Africa/Ouagadougou", "Koudougou": "Africa/Ouagadougou", "Ouahigouya": "Africa/Ouagadougou", "Banfora": "Africa/Ouagadougou" }},
+            "burundi": { capital: "Gitega", timezone: "Africa/Bujumbura", cities: { "Bujumbura": "Africa/Bujumbura", "Gitega": "Africa/Bujumbura", "Muyinga": "Africa/Bujumbura", "Ngozi": "Africa/Bujumbura", "Ruyigi": "Africa/Bujumbura" }},
+            "cabo verde": { capital: "Praia", timezone: "Atlantic/Cape_Verde", cities: { "Praia": "Atlantic/Cape_Verde", "Mindelo": "Atlantic/Cape_Verde", "Santa Maria": "Atlantic/Cape_Verde", "Espargos": "Atlantic/Cape_Verde", "Assomada": "Atlantic/Cape_Verde" }},
+            "cambodia": { capital: "Phnom Penh", timezone: "Asia/Phnom_Penh", cities: { "Phnom Penh": "Asia/Phnom_Penh", "Siem Reap": "Asia/Phnom_Penh", "Battambang": "Asia/Phnom_Penh", "Sihanoukville": "Asia/Phnom_Penh", "Poipet": "Asia/Phnom_Penh" }},
+            "cameroon": { capital: "Yaounde", timezone: "Africa/Douala", cities: { "Douala": "Africa/Douala", "Yaounde": "Africa/Douala", "Garoua": "Africa/Douala", "Bamenda": "Africa/Douala", "Maroua": "Africa/Douala" }},
+            "canada": { capital: "Ottawa", timezone: "America/Toronto", cities: { "Toronto": "America/Toronto", "Montreal": "America/Toronto", "Vancouver": "America/Vancouver", "Calgary": "America/Edmonton", "Edmonton": "America/Edmonton", "Ottawa": "America/Toronto", "Winnipeg": "America/Winnipeg", "Quebec City": "America/Toronto", "Hamilton": "America/Toronto", "Halifax": "America/Halifax", "Victoria": "America/Vancouver", "St. John's": "America/St_Johns" }},
+            "central african republic": { capital: "Bangui", timezone: "Africa/Bangui", cities: { "Bangui": "Africa/Bangui", "Bimbo": "Africa/Bangui", "Berberati": "Africa/Bangui", "Carnot": "Africa/Bangui", "Bouar": "Africa/Bangui" }},
+            "chad": { capital: "N'Djamena", timezone: "Africa/Ndjamena", cities: { "N'Djamena": "Africa/Ndjamena", "Moundou": "Africa/Ndjamena", "Sarh": "Africa/Ndjamena", "Abeche": "Africa/Ndjamena", "Kelo": "Africa/Ndjamena" }},
+            "chile": { capital: "Santiago", timezone: "America/Santiago", cities: { "Santiago": "America/Santiago", "Puente Alto": "America/Santiago", "Antofagasta": "America/Santiago", "Vina del Mar": "America/Santiago", "Valparaiso": "America/Santiago", "Concepcion": "America/Santiago", "Punta Arenas": "America/Punta_Arenas", "Easter Island": "Pacific/Easter" }},
+            "china": { capital: "Beijing", timezone: "Asia/Shanghai", cities: { "Beijing": "Asia/Shanghai", "Shanghai": "Asia/Shanghai", "Guangzhou": "Asia/Shanghai", "Shenzhen": "Asia/Shanghai", "Chengdu": "Asia/Shanghai", "Chongqing": "Asia/Shanghai", "Tianjin": "Asia/Shanghai", "Wuhan": "Asia/Shanghai", "Xi'an": "Asia/Shanghai", "Hangzhou": "Asia/Shanghai", "Nanjing": "Asia/Shanghai", "Urumqi": "Asia/Urumqi" }},
+            "colombia": { capital: "Bogota", timezone: "America/Bogota", cities: { "Bogota": "America/Bogota", "Medellin": "America/Bogota", "Cali": "America/Bogota", "Barranquilla": "America/Bogota", "Cartagena": "America/Bogota", "Cucuta": "America/Bogota", "Bucaramanga": "America/Bogota" }},
+            "comoros": { capital: "Moroni", timezone: "Indian/Comoro", cities: { "Moroni": "Indian/Comoro", "Moutsamoudou": "Indian/Comoro", "Fomboni": "Indian/Comoro", "Domoni": "Indian/Comoro", "Tsembehou": "Indian/Comoro" }},
+            "congo (congo-brazzaville)": { capital: "Brazzaville", timezone: "Africa/Brazzaville", cities: { "Brazzaville": "Africa/Brazzaville", "Pointe-Noire": "Africa/Brazzaville", "Dolisie": "Africa/Brazzaville", "Nkayi": "Africa/Brazzaville", "Impfondo": "Africa/Brazzaville" }},
+            "costa rica": { capital: "San Jose", timezone: "America/Costa_Rica", cities: { "San Jose": "America/Costa_Rica", "Alajuela": "America/Costa_Rica", "Cartago": "America/Costa_Rica", "Heredia": "America/Costa_Rica", "Liberia": "America/Costa_Rica" }},
+            "croatia": { capital: "Zagreb", timezone: "Europe/Zagreb", cities: { "Zagreb": "Europe/Zagreb", "Split": "Europe/Zagreb", "Rijeka": "Europe/Zagreb", "Osijek": "Europe/Zagreb", "Zadar": "Europe/Zagreb" }},
+            "cuba": { capital: "Havana", timezone: "America/Havana", cities: { "Havana": "America/Havana", "Santiago de Cuba": "America/Havana", "Camaguey": "America/Havana", "Holguin": "America/Havana", "Guantanamo": "America/Havana" }},
+            "cyprus": { capital: "Nicosia", timezone: "Asia/Nicosia", cities: { "Nicosia": "Asia/Nicosia", "Limassol": "Asia/Nicosia", "Larnaca": "Asia/Nicosia", "Paphos": "Asia/Nicosia", "Famagusta": "Asia/Nicosia" }},
+            "czechia": { capital: "Prague", timezone: "Europe/Prague", cities: { "Prague": "Europe/Prague", "Brno": "Europe/Prague", "Ostrava": "Europe/Prague", "Plzen": "Europe/Prague", "Liberec": "Europe/Prague" }},
+            "czech republic": { capital: "Prague", timezone: "Europe/Prague", cities: { "Prague": "Europe/Prague", "Brno": "Europe/Prague", "Ostrava": "Europe/Prague", "Plzen": "Europe/Prague", "Liberec": "Europe/Prague" }},
+            "democratic republic of the congo": { capital: "Kinshasa", timezone: "Africa/Kinshasa", cities: { "Kinshasa": "Africa/Kinshasa", "Lubumbashi": "Africa/Lubumbashi", "Mbuji-Mayi": "Africa/Lubumbashi", "Kisangani": "Africa/Lubumbashi", "Goma": "Africa/Lubumbashi" }},
+            "denmark": { capital: "Copenhagen", timezone: "Europe/Copenhagen", cities: { "Copenhagen": "Europe/Copenhagen", "Aarhus": "Europe/Copenhagen", "Odense": "Europe/Copenhagen", "Aalborg": "Europe/Copenhagen", "Esbjerg": "Europe/Copenhagen" }},
+            "djibouti": { capital: "Djibouti", timezone: "Africa/Djibouti", cities: { "Djibouti": "Africa/Djibouti", "Ali Sabieh": "Africa/Djibouti", "Tadjoura": "Africa/Djibouti", "Obock": "Africa/Djibouti", "Dikhil": "Africa/Djibouti" }},
+            "dominica": { capital: "Roseau", timezone: "America/Dominica", cities: { "Roseau": "America/Dominica", "Portsmouth": "America/Dominica", "Marigot": "America/Dominica", "Berekua": "America/Dominica", "Mahaut": "America/Dominica" }},
+            "dominican republic": { capital: "Santo Domingo", timezone: "America/Santo_Domingo", cities: { "Santo Domingo": "America/Santo_Domingo", "Santiago de los Caballeros": "America/Santo_Domingo", "Santo Domingo Este": "America/Santo_Domingo", "Santo Domingo Norte": "America/Santo_Domingo", "Santo Domingo Oeste": "America/Santo_Domingo" }},
+            "ecuador": { capital: "Quito", timezone: "America/Guayaquil", cities: { "Guayaquil": "America/Guayaquil", "Quito": "America/Guayaquil", "Cuenca": "America/Guayaquil", "Santo Domingo": "America/Guayaquil", "Machala": "America/Guayaquil", "Galapagos": "Pacific/Galapagos" }},
+            "egypt": { capital: "Cairo", timezone: "Africa/Cairo", cities: { "Cairo": "Africa/Cairo", "Alexandria": "Africa/Cairo", "Giza": "Africa/Cairo", "Shubra El-Kheima": "Africa/Cairo", "Port Said": "Africa/Cairo", "Suez": "Africa/Cairo", "Luxor": "Africa/Cairo", "Aswan": "Africa/Cairo" }},
+            "el salvador": { capital: "San Salvador", timezone: "America/El_Salvador", cities: { "San Salvador": "America/El_Salvador", "Soyapango": "America/El_Salvador", "Santa Ana": "America/El_Salvador", "San Miguel": "America/El_Salvador", "Mejicanos": "America/El_Salvador" }},
+            "equatorial guinea": { capital: "Malabo", timezone: "Africa/Malabo", cities: { "Bata": "Africa/Malabo", "Malabo": "Africa/Malabo", "Ebebiyin": "Africa/Malabo", "Aconibe": "Africa/Malabo", "Añisoc": "Africa/Malabo" }},
+            "eritrea": { capital: "Asmara", timezone: "Africa/Asmara", cities: { "Asmara": "Africa/Asmara", "Keren": "Africa/Asmara", "Massawa": "Africa/Asmara", "Assab": "Africa/Asmara", "Mendefera": "Africa/Asmara" }},
+            "estonia": { capital: "Tallinn", timezone: "Europe/Tallinn", cities: { "Tallinn": "Europe/Tallinn", "Tartu": "Europe/Tallinn", "Narva": "Europe/Tallinn", "Parnu": "Europe/Tallinn", "Kohtla-Jarve": "Europe/Tallinn" }},
+            "eswatini": { capital: "Mbabane", timezone: "Africa/Mbabane", cities: { "Manzini": "Africa/Mbabane", "Mbabane": "Africa/Mbabane", "Big Bend": "Africa/Mbabane", "Mhlume": "Africa/Mbabane", "Hluti": "Africa/Mbabane" }},
+            "swaziland": { capital: "Mbabane", timezone: "Africa/Mbabane", cities: { "Manzini": "Africa/Mbabane", "Mbabane": "Africa/Mbabane", "Big Bend": "Africa/Mbabane", "Mhlume": "Africa/Mbabane", "Hluti": "Africa/Mbabane" }},
+            "ethiopia": { capital: "Addis Ababa", timezone: "Africa/Addis_Ababa", cities: { "Addis Ababa": "Africa/Addis_Ababa", "Dire Dawa": "Africa/Addis_Ababa", "Mek'ele": "Africa/Addis_Ababa", "Gondar": "Africa/Addis_Ababa", "Awasa": "Africa/Addis_Ababa" }},
+            "fiji": { capital: "Suva", timezone: "Pacific/Fiji", cities: { "Suva": "Pacific/Fiji", "Lautoka": "Pacific/Fiji", "Nadi": "Pacific/Fiji", "Labasa": "Pacific/Fiji", "Ba": "Pacific/Fiji" }},
+            "finland": { capital: "Helsinki", timezone: "Europe/Helsinki", cities: { "Helsinki": "Europe/Helsinki", "Espoo": "Europe/Helsinki", "Tampere": "Europe/Helsinki", "Vantaa": "Europe/Helsinki", "Oulu": "Europe/Helsinki" }},
+            "france": { capital: "Paris", timezone: "Europe/Paris", cities: { "Paris": "Europe/Paris", "Marseille": "Europe/Paris", "Lyon": "Europe/Paris", "Toulouse": "Europe/Paris", "Nice": "Europe/Paris", "Nantes": "Europe/Paris", "Strasbourg": "Europe/Paris", "Montpellier": "Europe/Paris", "Bordeaux": "Europe/Paris", "Lille": "Europe/Paris" }},
+            "gabon": { capital: "Libreville", timezone: "Africa/Libreville", cities: { "Libreville": "Africa/Libreville", "Port-Gentil": "Africa/Libreville", "Franceville": "Africa/Libreville", "Oyem": "Africa/Libreville", "Moanda": "Africa/Libreville" }},
+            "gambia": { capital: "Banjul", timezone: "Africa/Banjul", cities: { "Serrekunda": "Africa/Banjul", "Brikama": "Africa/Banjul", "Bakau": "Africa/Banjul", "Banjul": "Africa/Banjul", "Farafenni": "Africa/Banjul" }},
+            "georgia": { capital: "Tbilisi", timezone: "Asia/Tbilisi", cities: { "Tbilisi": "Asia/Tbilisi", "Batumi": "Asia/Tbilisi", "Kutaisi": "Asia/Tbilisi", "Rustavi": "Asia/Tbilisi", "Gori": "Asia/Tbilisi" }},
+            "germany": { capital: "Berlin", timezone: "Europe/Berlin", cities: { "Berlin": "Europe/Berlin", "Hamburg": "Europe/Berlin", "Munich": "Europe/Berlin", "Cologne": "Europe/Berlin", "Frankfurt": "Europe/Berlin", "Stuttgart": "Europe/Berlin", "Dusseldorf": "Europe/Berlin", "Leipzig": "Europe/Berlin", "Dortmund": "Europe/Berlin", "Essen": "Europe/Berlin" }},
+            "ghana": { capital: "Accra", timezone: "Africa/Accra", cities: { "Accra": "Africa/Accra", "Kumasi": "Africa/Accra", "Tamale": "Africa/Accra", "Takoradi": "Africa/Accra", "Atsiaman": "Africa/Accra" }},
+            "greece": { capital: "Athens", timezone: "Europe/Athens", cities: { "Athens": "Europe/Athens", "Thessaloniki": "Europe/Athens", "Patras": "Europe/Athens", "Heraklion": "Europe/Athens", "Larissa": "Europe/Athens" }},
+            "grenada": { capital: "St. George's", timezone: "America/Grenada", cities: { "St. George's": "America/Grenada", "Gouyave": "America/Grenada", "Grenville": "America/Grenada", "Victoria": "America/Grenada", "St. David's": "America/Grenada" }},
+            "guatemala": { capital: "Guatemala City", timezone: "America/Guatemala", cities: { "Guatemala City": "America/Guatemala", "Mixco": "America/Guatemala", "Villa Nueva": "America/Guatemala", "Petapa": "America/Guatemala", "San Juan Sacatepequez": "America/Guatemala" }},
+            "guinea": { capital: "Conakry", timezone: "Africa/Conakry", cities: { "Conakry": "Africa/Conakry", "Nzerekore": "Africa/Conakry", "Kankan": "Africa/Conakry", "Kindia": "Africa/Conakry", "Siguiri": "Africa/Conakry" }},
+            "guinea-bissau": { capital: "Bissau", timezone: "Africa/Bissau", cities: { "Bissau": "Africa/Bissau", "Bafata": "Africa/Bissau", "Gabu": "Africa/Bissau", "Bissorã": "Africa/Bissau", "Bolama": "Africa/Bissau" }},
+            "guyana": { capital: "Georgetown", timezone: "America/Guyana", cities: { "Georgetown": "America/Guyana", "Linden": "America/Guyana", "New Amsterdam": "America/Guyana", "Anna Regina": "America/Guyana", "Bartica": "America/Guyana" }},
+            "haiti": { capital: "Port-au-Prince", timezone: "America/Port-au-Prince", cities: { "Port-au-Prince": "America/Port-au-Prince", "Carrefour": "America/Port-au-Prince", "Delmas": "America/Port-au-Prince", "Petion-Ville": "America/Port-au-Prince", "Cite Soleil": "America/Port-au-Prince" }},
+            "honduras": { capital: "Tegucigalpa", timezone: "America/Tegucigalpa", cities: { "Tegucigalpa": "America/Tegucigalpa", "San Pedro Sula": "America/Tegucigalpa", "Choloma": "America/Tegucigalpa", "La Ceiba": "America/Tegucigalpa", "El Progreso": "America/Tegucigalpa" }},
+            "hungary": { capital: "Budapest", timezone: "Europe/Budapest", cities: { "Budapest": "Europe/Budapest", "Debrecen": "Europe/Budapest", "Szeged": "Europe/Budapest", "Miskolc": "Europe/Budapest", "Pecs": "Europe/Budapest" }},
+            "iceland": { capital: "Reykjavik", timezone: "Atlantic/Reykjavik", cities: { "Reykjavik": "Atlantic/Reykjavik", "Kopavogur": "Atlantic/Reykjavik", "Hafnarfjordur": "Atlantic/Reykjavik", "Akureyri": "Atlantic/Reykjavik", "Reykjanesbaer": "Atlantic/Reykjavik" }},
+            "india": { capital: "New Delhi", timezone: "Asia/Kolkata", cities: { "Mumbai": "Asia/Kolkata", "Delhi": "Asia/Kolkata", "Bangalore": "Asia/Kolkata", "Hyderabad": "Asia/Kolkata", "Ahmedabad": "Asia/Kolkata", "Chennai": "Asia/Kolkata", "Kolkata": "Asia/Kolkata", "Surat": "Asia/Kolkata", "Pune": "Asia/Kolkata", "Jaipur": "Asia/Kolkata", "Lucknow": "Asia/Kolkata", "Kanpur": "Asia/Kolkata", "Nagpur": "Asia/Kolkata", "Indore": "Asia/Kolkata" }},
+            "indonesia": { capital: "Jakarta", timezone: "Asia/Jakarta", cities: { "Jakarta": "Asia/Jakarta", "Surabaya": "Asia/Jakarta", "Bandung": "Asia/Jakarta", "Medan": "Asia/Jakarta", "Bekasi": "Asia/Jakarta", "Makassar": "Asia/Makassar", "Denpasar (Bali)": "Asia/Makassar", "Jayapura": "Asia/Jayapura", "Pontianak": "Asia/Pontianak" }},
+            "iran": { capital: "Tehran", timezone: "Asia/Tehran", cities: { "Tehran": "Asia/Tehran", "Mashhad": "Asia/Tehran", "Isfahan": "Asia/Tehran", "Karaj": "Asia/Tehran", "Shiraz": "Asia/Tehran", "Tabriz": "Asia/Tehran", "Qom": "Asia/Tehran" }},
+            "iraq": { capital: "Baghdad", timezone: "Asia/Baghdad", cities: { "Baghdad": "Asia/Baghdad", "Basra": "Asia/Baghdad", "Mosul": "Asia/Baghdad", "Erbil": "Asia/Baghdad", "Kirkuk": "Asia/Baghdad", "Najaf": "Asia/Baghdad", "Karbala": "Asia/Baghdad" }},
+            "ireland": { capital: "Dublin", timezone: "Europe/Dublin", cities: { "Dublin": "Europe/Dublin", "Cork": "Europe/Dublin", "Limerick": "Europe/Dublin", "Galway": "Europe/Dublin", "Waterford": "Europe/Dublin" }},
+            "israel": { capital: "Jerusalem", timezone: "Asia/Jerusalem", cities: { "Jerusalem": "Asia/Jerusalem", "Tel Aviv": "Asia/Jerusalem", "Haifa": "Asia/Jerusalem", "Rishon LeZion": "Asia/Jerusalem", "Petah Tikva": "Asia/Jerusalem", "Ashdod": "Asia/Jerusalem" }},
+            "italy": { capital: "Rome", timezone: "Europe/Rome", cities: { "Rome": "Europe/Rome", "Milan": "Europe/Rome", "Naples": "Europe/Rome", "Turin": "Europe/Rome", "Palermo": "Europe/Rome", "Genoa": "Europe/Rome", "Bologna": "Europe/Rome", "Florence": "Europe/Rome", "Bari": "Europe/Rome", "Catania": "Europe/Rome" }},
+            "jamaica": { capital: "Kingston", timezone: "America/Jamaica", cities: { "Kingston": "America/Jamaica", "Spanish Town": "America/Jamaica", "Portmore": "America/Jamaica", "Montego Bay": "America/Jamaica", "Mandeville": "America/Jamaica" }},
+            "japan": { capital: "Tokyo", timezone: "Asia/Tokyo", cities: { "Tokyo": "Asia/Tokyo", "Yokohama": "Asia/Tokyo", "Osaka": "Asia/Tokyo", "Nagoya": "Asia/Tokyo", "Sapporo": "Asia/Tokyo", "Fukuoka": "Asia/Tokyo", "Kobe": "Asia/Tokyo", "Kyoto": "Asia/Tokyo", "Kawasaki": "Asia/Tokyo", "Saitama": "Asia/Tokyo" }},
+            "jordan": { capital: "Amman", timezone: "Asia/Amman", cities: { "Amman": "Asia/Amman", "Zarqa": "Asia/Amman", "Irbid": "Asia/Amman", "Russeifa": "Asia/Amman", "Aqaba": "Asia/Amman" }},
+            "kazakhstan": { capital: "Astana", timezone: "Asia/Almaty", cities: { "Almaty": "Asia/Almaty", "Astana": "Asia/Almaty", "Shymkent": "Asia/Almaty", "Karaganda": "Asia/Almaty", "Aktobe": "Asia/Aqtobe", "Oral": "Asia/Oral", "Aqtau": "Asia/Aqtau", "Atyrau": "Asia/Atyrau" }},
+            "kenya": { capital: "Nairobi", timezone: "Africa/Nairobi", cities: { "Nairobi": "Africa/Nairobi", "Mombasa": "Africa/Nairobi", "Kisumu": "Africa/Nairobi", "Nakuru": "Africa/Nairobi", "Eldoret": "Africa/Nairobi", "Malindi": "Africa/Nairobi" }},
+            "kiribati": { capital: "Tarawa", timezone: "Pacific/Tarawa", cities: { "Tarawa": "Pacific/Tarawa", "Kiritimati": "Pacific/Kiritimati", "Kanton": "Pacific/Kanton", "Betio": "Pacific/Tarawa", "Bairiki": "Pacific/Tarawa" }},
+            "kuwait": { capital: "Kuwait City", timezone: "Asia/Kuwait", cities: { "Al Ahmadi": "Asia/Kuwait", "Hawalli": "Asia/Kuwait", "Al Farwaniyah": "Asia/Kuwait", "Kuwait City": "Asia/Kuwait", "Al Jahra": "Asia/Kuwait" }},
+            "kyrgyzstan": { capital: "Bishkek", timezone: "Asia/Bishkek", cities: { "Bishkek": "Asia/Bishkek", "Osh": "Asia/Bishkek", "Jalal-Abad": "Asia/Bishkek", "Karakol": "Asia/Bishkek", "Tokmok": "Asia/Bishkek" }},
+            "laos": { capital: "Vientiane", timezone: "Asia/Vientiane", cities: { "Vientiane": "Asia/Vientiane", "Pakse": "Asia/Vientiane", "Savannakhet": "Asia/Vientiane", "Luang Prabang": "Asia/Vientiane", "Xam Neua": "Asia/Vientiane" }},
+            "latvia": { capital: "Riga", timezone: "Europe/Riga", cities: { "Riga": "Europe/Riga", "Daugavpils": "Europe/Riga", "Liepaja": "Europe/Riga", "Jelgava": "Europe/Riga", "Jurmala": "Europe/Riga" }},
+            "lebanon": { capital: "Beirut", timezone: "Asia/Beirut", cities: { "Beirut": "Asia/Beirut", "Tripoli": "Asia/Beirut", "Sidon": "Asia/Beirut", "Tyre": "Asia/Beirut", "Nabatieh": "Asia/Beirut" }},
+            "lesotho": { capital: "Maseru", timezone: "Africa/Maseru", cities: { "Maseru": "Africa/Maseru", "Teyateyaneng": "Africa/Maseru", "Mafeteng": "Africa/Maseru", "Hlotse": "Africa/Maseru", "Mohale's Hoek": "Africa/Maseru" }},
+            "liberia": { capital: "Monrovia", timezone: "Africa/Monrovia", cities: { "Monrovia": "Africa/Monrovia", "Gbarnga": "Africa/Monrovia", "Kakata": "Africa/Monrovia", "Bensonville": "Africa/Monrovia", "Harper": "Africa/Monrovia" }},
+            "libya": { capital: "Tripoli", timezone: "Africa/Tripoli", cities: { "Tripoli": "Africa/Tripoli", "Benghazi": "Africa/Tripoli", "Misrata": "Africa/Tripoli", "Tarhuna": "Africa/Tripoli", "Al Khums": "Africa/Tripoli" }},
+            "liechtenstein": { capital: "Vaduz", timezone: "Europe/Vaduz", cities: { "Schaan": "Europe/Vaduz", "Vaduz": "Europe/Vaduz", "Triesen": "Europe/Vaduz", "Balzers": "Europe/Vaduz", "Eschen": "Europe/Vaduz" }},
+            "lithuania": { capital: "Vilnius", timezone: "Europe/Vilnius", cities: { "Vilnius": "Europe/Vilnius", "Kaunas": "Europe/Vilnius", "Klaipeda": "Europe/Vilnius", "Siauliai": "Europe/Vilnius", "Panevezys": "Europe/Vilnius" }},
+            "luxembourg": { capital: "Luxembourg City", timezone: "Europe/Luxembourg", cities: { "Luxembourg City": "Europe/Luxembourg", "Esch-sur-Alzette": "Europe/Luxembourg", "Differdange": "Europe/Luxembourg", "Dudelange": "Europe/Luxembourg", "Ettelbruck": "Europe/Luxembourg" }},
+            "madagascar": { capital: "Antananarivo", timezone: "Indian/Antananarivo", cities: { "Antananarivo": "Indian/Antananarivo", "Toamasina": "Indian/Antananarivo", "Antsirabe": "Indian/Antananarivo", "Fianarantsoa": "Indian/Antananarivo", "Mahajanga": "Indian/Antananarivo" }},
+            "malawi": { capital: "Lilongwe", timezone: "Africa/Blantyre", cities: { "Lilongwe": "Africa/Blantyre", "Blantyre": "Africa/Blantyre", "Mzuzu": "Africa/Blantyre", "Zomba": "Africa/Blantyre", "Kasungu": "Africa/Blantyre" }},
+            "malaysia": { capital: "Kuala Lumpur", timezone: "Asia/Kuala_Lumpur", cities: { "Kuala Lumpur": "Asia/Kuala_Lumpur", "George Town": "Asia/Kuala_Lumpur", "Johor Bahru": "Asia/Kuala_Lumpur", "Ipoh": "Asia/Kuala_Lumpur", "Shah Alam": "Asia/Kuala_Lumpur", "Kota Kinabalu": "Asia/Kuching", "Kuching": "Asia/Kuching", "Malacca": "Asia/Kuala_Lumpur" }},
+            "maldives": { capital: "Male", timezone: "Indian/Maldives", cities: { "Male": "Indian/Maldives", "Fuvahmulah": "Indian/Maldives", "Hithadhoo": "Indian/Maldives", "Kulhudhuffushi": "Indian/Maldives", "Thinadhoo": "Indian/Maldives" }},
+            "mali": { capital: "Bamako", timezone: "Africa/Bamako", cities: { "Bamako": "Africa/Bamako", "Sikasso": "Africa/Bamako", "Mopti": "Africa/Bamako", "Koutiala": "Africa/Bamako", "Kayes": "Africa/Bamako" }},
+            "malta": { capital: "Valletta", timezone: "Europe/Malta", cities: { "Birkirkara": "Europe/Malta", "Qormi": "Europe/Malta", "Mosta": "Europe/Malta", "Zabbar": "Europe/Malta", "Valletta": "Europe/Malta" }},
+            "marshall islands": { capital: "Majuro", timezone: "Pacific/Majuro", cities: { "Majuro": "Pacific/Majuro", "Ebeye": "Pacific/Kwajalein", "Arno": "Pacific/Majuro", "Jaluit": "Pacific/Majuro", "Kili": "Pacific/Majuro" }},
+            "mauritania": { capital: "Nouakchott", timezone: "Africa/Nouakchott", cities: { "Nouakchott": "Africa/Nouakchott", "Nouadhibou": "Africa/Nouakchott", "Kiffa": "Africa/Nouakchott", "Rosso": "Africa/Nouakchott", "Kaedi": "Africa/Nouakchott" }},
+            "mauritius": { capital: "Port Louis", timezone: "Indian/Mauritius", cities: { "Port Louis": "Indian/Mauritius", "Vacoas-Phoenix": "Indian/Mauritius", "Beau Bassin-Rose Hill": "Indian/Mauritius", "Curepipe": "Indian/Mauritius", "Quatre Bornes": "Indian/Mauritius" }},
+            "mexico": { capital: "Mexico City", timezone: "America/Mexico_City", cities: { "Mexico City": "America/Mexico_City", "Guadalajara": "America/Mexico_City", "Monterrey": "America/Monterrey", "Puebla": "America/Mexico_City", "Tijuana": "America/Tijuana", "Leon": "America/Mexico_City", "Ciudad Juarez": "America/Ciudad_Juarez", "Cancun": "America/Cancun", "Chihuahua": "America/Chihuahua", "Hermosillo": "America/Hermosillo", "Mazatlan": "America/Mazatlan" }},
+            "micronesia": { capital: "Palikir", timezone: "Pacific/Pohnpei", cities: { "Weno": "Pacific/Chuuk", "Kolonia": "Pacific/Pohnpei", "Palikir": "Pacific/Pohnpei", "Lelu": "Pacific/Kosrae", "Yap": "Pacific/Pohnpei" }},
+            "moldova": { capital: "Chisinau", timezone: "Europe/Chisinau", cities: { "Chisinau": "Europe/Chisinau", "Tiraspol": "Europe/Chisinau", "Balti": "Europe/Chisinau", "Bender": "Europe/Chisinau", "Ribnita": "Europe/Chisinau" }},
+            "monaco": { capital: "Monaco", timezone: "Europe/Monaco", cities: { "Monte Carlo": "Europe/Monaco", "La Condamine": "Europe/Monaco", "Fontvieille": "Europe/Monaco", "Moneghetti": "Europe/Monaco", "Monaco-Ville": "Europe/Monaco" }},
+            "mongolia": { capital: "Ulaanbaatar", timezone: "Asia/Ulaanbaatar", cities: { "Ulaanbaatar": "Asia/Ulaanbaatar", "Erdenet": "Asia/Ulaanbaatar", "Darkhan": "Asia/Ulaanbaatar", "Choibalsan": "Asia/Choibalsan", "Hovd": "Asia/Hovd" }},
+            "montenegro": { capital: "Podgorica", timezone: "Europe/Podgorica", cities: { "Podgorica": "Europe/Podgorica", "Niksic": "Europe/Podgorica", "Pljevlja": "Europe/Podgorica", "Bijelo Polje": "Europe/Podgorica", "Cetinje": "Europe/Podgorica" }},
+            "morocco": { capital: "Rabat", timezone: "Africa/Casablanca", cities: { "Casablanca": "Africa/Casablanca", "Fez": "Africa/Casablanca", "Tangier": "Africa/Casablanca", "Marrakesh": "Africa/Casablanca", "Salé": "Africa/Casablanca", "Rabat": "Africa/Casablanca", "Meknes": "Africa/Casablanca" }},
+            "mozambique": { capital: "Maputo", timezone: "Africa/Maputo", cities: { "Maputo": "Africa/Maputo", "Matola": "Africa/Maputo", "Beira": "Africa/Maputo", "Nampula": "Africa/Maputo", "Chimoio": "Africa/Maputo" }},
+            "myanmar (burma)": { capital: "Naypyidaw", timezone: "Asia/Yangon", cities: { "Yangon": "Asia/Yangon", "Mandalay": "Asia/Yangon", "Naypyidaw": "Asia/Yangon", "Mawlamyine": "Asia/Yangon", "Bago": "Asia/Yangon" }},
+            "namibia": { capital: "Windhoek", timezone: "Africa/Windhoek", cities: { "Windhoek": "Africa/Windhoek", "Rundu": "Africa/Windhoek", "Walvis Bay": "Africa/Windhoek", "Oshakati": "Africa/Windhoek", "Swakopmund": "Africa/Windhoek" }},
+            "nauru": { capital: "Yaren", timezone: "Pacific/Nauru", cities: { "Yaren": "Pacific/Nauru", "Boe": "Pacific/Nauru", "Nibok": "Pacific/Nauru", "Denigomodu": "Pacific/Nauru", "Uaboe": "Pacific/Nauru" }},
+            "nepal": { capital: "Kathmandu", timezone: "Asia/Kathmandu", cities: { "Kathmandu": "Asia/Kathmandu", "Pokhara": "Asia/Kathmandu", "Lalitpur": "Asia/Kathmandu", "Biratnagar": "Asia/Kathmandu", "Bharatpur": "Asia/Kathmandu" }},
+            "netherlands": { capital: "Amsterdam", timezone: "Europe/Amsterdam", cities: { "Amsterdam": "Europe/Amsterdam", "Rotterdam": "Europe/Amsterdam", "The Hague": "Europe/Amsterdam", "Utrecht": "Europe/Amsterdam", "Eindhoven": "Europe/Amsterdam", "Tilburg": "Europe/Amsterdam", "Groningen": "Europe/Amsterdam" }},
+            "new zealand": { capital: "Wellington", timezone: "Pacific/Auckland", cities: { "Auckland": "Pacific/Auckland", "Wellington": "Pacific/Auckland", "Christchurch": "Pacific/Auckland", "Hamilton": "Pacific/Auckland", "Tauranga": "Pacific/Auckland", "Dunedin": "Pacific/Auckland", "Chatham Islands": "Pacific/Chatham" }},
+            "nicaragua": { capital: "Managua", timezone: "America/Managua", cities: { "Managua": "America/Managua", "Leon": "America/Managua", "Masaya": "America/Managua", "Tipitapa": "America/Managua", "Chinandega": "America/Managua" }},
+            "niger": { capital: "Niamey", timezone: "Africa/Niamey", cities: { "Niamey": "Africa/Niamey", "Zinder": "Africa/Niamey", "Maradi": "Africa/Niamey", "Tahoua": "Africa/Niamey", "Agadez": "Africa/Niamey" }},
+            "nigeria": { capital: "Abuja", timezone: "Africa/Lagos", cities: { "Lagos": "Africa/Lagos", "Kano": "Africa/Lagos", "Ibadan": "Africa/Lagos", "Kaduna": "Africa/Lagos", "Port Harcourt": "Africa/Lagos", "Benin City": "Africa/Lagos", "Maiduguri": "Africa/Lagos", "Abuja": "Africa/Lagos" }},
+            "north korea": { capital: "Pyongyang", timezone: "Asia/Pyongyang", cities: { "Pyongyang": "Asia/Pyongyang", "Hamhung": "Asia/Pyongyang", "Chongjin": "Asia/Pyongyang", "Nampo": "Asia/Pyongyang", "Wonsan": "Asia/Pyongyang" }},
+            "north macedonia": { capital: "Skopje", timezone: "Europe/Skopje", cities: { "Skopje": "Europe/Skopje", "Bitola": "Europe/Skopje", "Kumanovo": "Europe/Skopje", "Prilep": "Europe/Skopje", "Tetovo": "Europe/Skopje" }},
+            "norway": { capital: "Oslo", timezone: "Europe/Oslo", cities: { "Oslo": "Europe/Oslo", "Bergen": "Europe/Oslo", "Trondheim": "Europe/Oslo", "Stavanger": "Europe/Oslo", "Drammen": "Europe/Oslo", "Tromso": "Europe/Oslo" }},
+            "oman": { capital: "Muscat", timezone: "Asia/Muscat", cities: { "Muscat": "Asia/Muscat", "Salalah": "Asia/Muscat", "Sohar": "Asia/Muscat", "Seeb": "Asia/Muscat", "Bawshar": "Asia/Muscat" }},
+            "pakistan": { capital: "Islamabad", timezone: "Asia/Karachi", cities: { "Karachi": "Asia/Karachi", "Lahore": "Asia/Karachi", "Faisalabad": "Asia/Karachi", "Rawalpindi": "Asia/Karachi", "Gujranwala": "Asia/Karachi", "Peshawar": "Asia/Karachi", "Multan": "Asia/Karachi", "Hyderabad": "Asia/Karachi", "Islamabad": "Asia/Karachi", "Quetta": "Asia/Karachi" }},
+            "palau": { capital: "Ngerulmud", timezone: "Pacific/Palau", cities: { "Koror": "Pacific/Palau", "Ngerulmud": "Pacific/Palau", "Airai": "Pacific/Palau", "Kloulklubed": "Pacific/Palau", "Meyuns": "Pacific/Palau" }},
+            "palestine": { capital: "Jerusalem (East)", timezone: "Asia/Hebron", cities: { "Gaza": "Asia/Gaza", "Hebron": "Asia/Hebron", "Nablus": "Asia/Hebron", "Khan Yunis": "Asia/Gaza", "Jabalia": "Asia/Gaza", "Ramallah": "Asia/Hebron", "Bethlehem": "Asia/Hebron" }},
+            "panama": { capital: "Panama City", timezone: "America/Panama", cities: { "Panama City": "America/Panama", "San Miguelito": "America/Panama", "Tocumen": "America/Panama", "David": "America/Panama", "Colon": "America/Panama" }},
+            "papua new guinea": { capital: "Port Moresby", timezone: "Pacific/Port_Moresby", cities: { "Port Moresby": "Pacific/Port_Moresby", "Lae": "Pacific/Port_Moresby", "Arawa": "Pacific/Bougainville", "Mount Hagen": "Pacific/Port_Moresby", "Madang": "Pacific/Port_Moresby" }},
+            "paraguay": { capital: "Asuncion", timezone: "America/Asuncion", cities: { "Asuncion": "America/Asuncion", "Ciudad del Este": "America/Asuncion", "San Lorenzo": "America/Asuncion", "Luque": "America/Asuncion", "Capiata": "America/Asuncion" }},
+            "peru": { capital: "Lima", timezone: "America/Lima", cities: { "Lima": "America/Lima", "Arequipa": "America/Lima", "Callao": "America/Lima", "Trujillo": "America/Lima", "Chiclayo": "America/Lima", "Iquitos": "America/Lima", "Piura": "America/Lima", "Cusco": "America/Lima" }},
+            "philippines": { capital: "Manila", timezone: "Asia/Manila", cities: { "Quezon City": "Asia/Manila", "Manila": "Asia/Manila", "Davao City": "Asia/Manila", "Caloocan": "Asia/Manila", "Cebu City": "Asia/Manila", "Zamboanga City": "Asia/Manila", "Taguig": "Asia/Manila", "Antipolo": "Asia/Manila", "Pasig": "Asia/Manila" }},
+            "poland": { capital: "Warsaw", timezone: "Europe/Warsaw", cities: { "Warsaw": "Europe/Warsaw", "Krakow": "Europe/Warsaw", "Lodz": "Europe/Warsaw", "Wroclaw": "Europe/Warsaw", "Poznan": "Europe/Warsaw", "Gdansk": "Europe/Warsaw", "Szczecin": "Europe/Warsaw" }},
+            "portugal": { capital: "Lisbon", timezone: "Europe/Lisbon", cities: { "Lisbon": "Europe/Lisbon", "Porto": "Europe/Lisbon", "Vila Nova de Gaia": "Europe/Lisbon", "Amadora": "Europe/Lisbon", "Braga": "Europe/Lisbon", "Funchal (Madeira)": "Atlantic/Madeira", "Ponta Delgada (Azores)": "Atlantic/Azores" }},
+            "qatar": { capital: "Doha", timezone: "Asia/Qatar", cities: { "Doha": "Asia/Qatar", "Al Rayyan": "Asia/Qatar", "Al Wakrah": "Asia/Qatar", "Al Khor": "Asia/Qatar", "Umm Salal": "Asia/Qatar" }},
+            "romania": { capital: "Bucharest", timezone: "Europe/Bucharest", cities: { "Bucharest": "Europe/Bucharest", "Cluj-Napoca": "Europe/Bucharest", "Timisoara": "Europe/Bucharest", "Iasi": "Europe/Bucharest", "Constanta": "Europe/Bucharest", "Craiova": "Europe/Bucharest" }},
+            "russia": { capital: "Moscow", timezone: "Europe/Moscow", cities: { "Moscow": "Europe/Moscow", "Saint Petersburg": "Europe/Moscow", "Novosibirsk": "Asia/Novosibirsk", "Yekaterinburg": "Asia/Yekaterinburg", "Kazan": "Europe/Moscow", "Nizhny Novgorod": "Europe/Moscow", "Chelyabinsk": "Asia/Yekaterinburg", "Samara": "Europe/Samara", "Omsk": "Asia/Omsk", "Rostov-on-Don": "Europe/Moscow", "Ufa": "Asia/Yekaterinburg", "Krasnoyarsk": "Asia/Krasnoyarsk", "Vladivostok": "Asia/Vladivostok", "Kaliningrad": "Europe/Kaliningrad", "Yakutsk": "Asia/Yakutsk", "Magadan": "Asia/Magadan", "Kamchatka": "Asia/Kamchatka" }},
+            "rwanda": { capital: "Kigali", timezone: "Africa/Kigali", cities: { "Kigali": "Africa/Kigali", "Gisenyi": "Africa/Kigali", "Ruhengeri": "Africa/Kigali", "Butare": "Africa/Kigali", "Muhanga": "Africa/Kigali" }},
+            "saint kitts and nevis": { capital: "Basseterre", timezone: "America/St_Kitts", cities: { "Basseterre": "America/St_Kitts", "Charlestown": "America/St_Kitts", "Saint Paul's": "America/St_Kitts", "Sadlers": "America/St_Kitts", "Middle Island": "America/St_Kitts" }},
+            "saint lucia": { capital: "Castries", timezone: "America/St_Lucia", cities: { "Castries": "America/St_Lucia", "Bisee": "America/St_Lucia", "Vieux Fort": "America/St_Lucia", "Micoud": "America/St_Lucia", "Soufriere": "America/St_Lucia" }},
+            "saint vincent and the grenadines": { capital: "Kingstown", timezone: "America/St_Vincent", cities: { "Kingstown": "America/St_Vincent", "Georgetown": "America/St_Vincent", "Byera": "America/St_Vincent", "Biabou": "America/St_Vincent", "Port Elizabeth": "America/St_Vincent" }},
+            "samoa": { capital: "Apia", timezone: "Pacific/Apia", cities: { "Apia": "Pacific/Apia", "Asau": "Pacific/Apia", "Mulifanua": "Pacific/Apia", "Fasito'outa": "Pacific/Apia", "Vailima": "Pacific/Apia" }},
+            "san marino": { capital: "San Marino", timezone: "Europe/San_Marino", cities: { "Serravalle": "Europe/San_Marino", "Borgo Maggiore": "Europe/San_Marino", "San Marino": "Europe/San_Marino", "Domagnano": "Europe/San_Marino", "Fiorentino": "Europe/San_Marino" }},
+            "sao tome and principe": { capital: "Sao Tome", timezone: "Africa/Sao_Tome", cities: { "Sao Tome": "Africa/Sao_Tome", "Trindade": "Africa/Sao_Tome", "Neves": "Africa/Sao_Tome", "Santana": "Africa/Sao_Tome", "Santo Amaro": "Africa/Sao_Tome" }},
+            "saudi arabia": { capital: "Riyadh", timezone: "Asia/Riyadh", cities: { "Riyadh": "Asia/Riyadh", "Jeddah": "Asia/Riyadh", "Mecca": "Asia/Riyadh", "Medina": "Asia/Riyadh", "Dammam": "Asia/Riyadh", "Ta'if": "Asia/Riyadh", "Tabuk": "Asia/Riyadh", "Buraidah": "Asia/Riyadh" }},
+            "senegal": { capital: "Dakar", timezone: "Africa/Dakar", cities: { "Dakar": "Africa/Dakar", "Touba": "Africa/Dakar", "Thies": "Africa/Dakar", "Rufisque": "Africa/Dakar", "Kaolack": "Africa/Dakar" }},
+            "serbia": { capital: "Belgrade", timezone: "Europe/Belgrade", cities: { "Belgrade": "Europe/Belgrade", "Novi Sad": "Europe/Belgrade", "Nis": "Europe/Belgrade", "Kragujevac": "Europe/Belgrade", "Subotica": "Europe/Belgrade" }},
+            "seychelles": { capital: "Victoria", timezone: "Indian/Mahe", cities: { "Victoria": "Indian/Mahe", "Anse Boileau": "Indian/Mahe", "Beau Vallon": "Indian/Mahe", "Anse Royale": "Indian/Mahe", "Takamaka": "Indian/Mahe" }},
+            "sierra leone": { capital: "Freetown", timezone: "Africa/Freetown", cities: { "Freetown": "Africa/Freetown", "Bo": "Africa/Freetown", "Kenema": "Africa/Freetown", "Makeni": "Africa/Freetown", "Koidu": "Africa/Freetown" }},
+            "singapore": { capital: "Singapore", timezone: "Asia/Singapore", cities: { "Singapore": "Asia/Singapore", "Hougang": "Asia/Singapore", "Tampines": "Asia/Singapore", "Pasir Ris": "Asia/Singapore", "Choa Chu Kang": "Asia/Singapore" }},
+            "slovakia": { capital: "Bratislava", timezone: "Europe/Bratislava", cities: { "Bratislava": "Europe/Bratislava", "Kosice": "Europe/Bratislava", "Presov": "Europe/Bratislava", "Zilina": "Europe/Bratislava", "Nitra": "Europe/Bratislava" }},
+            "slovenia": { capital: "Ljubljana", timezone: "Europe/Ljubljana", cities: { "Ljubljana": "Europe/Ljubljana", "Maribor": "Europe/Ljubljana", "Celje": "Europe/Ljubljana", "Kranj": "Europe/Ljubljana", "Koper": "Europe/Ljubljana" }},
+            "solomon islands": { capital: "Honiara", timezone: "Pacific/Guadalcanal", cities: { "Honiara": "Pacific/Guadalcanal", "Auki": "Pacific/Guadalcanal", "Gizo": "Pacific/Guadalcanal", "Buala": "Pacific/Guadalcanal", "Tulagi": "Pacific/Guadalcanal" }},
+            "somalia": { capital: "Mogadishu", timezone: "Africa/Mogadishu", cities: { "Mogadishu": "Africa/Mogadishu", "Hargeisa": "Africa/Mogadishu", "Bosaso": "Africa/Mogadishu", "Galkayo": "Africa/Mogadishu", "Kismayo": "Africa/Mogadishu" }},
+            "south africa": { capital: "Pretoria", timezone: "Africa/Johannesburg", cities: { "Johannesburg": "Africa/Johannesburg", "Cape Town": "Africa/Johannesburg", "Durban": "Africa/Johannesburg", "Pretoria": "Africa/Johannesburg", "Port Elizabeth": "Africa/Johannesburg", "Bloemfontein": "Africa/Johannesburg", "East London": "Africa/Johannesburg" }},
+            "south korea": { capital: "Seoul", timezone: "Asia/Seoul", cities: { "Seoul": "Asia/Seoul", "Busan": "Asia/Seoul", "Incheon": "Asia/Seoul", "Daegu": "Asia/Seoul", "Daejeon": "Asia/Seoul", "Gwangju": "Asia/Seoul", "Suwon": "Asia/Seoul", "Ulsan": "Asia/Seoul" }},
+            "south sudan": { capital: "Juba", timezone: "Africa/Juba", cities: { "Juba": "Africa/Juba", "Malakal": "Africa/Juba", "Wau": "Africa/Juba", "Yei": "Africa/Juba", "Yambio": "Africa/Juba" }},
+            "spain": { capital: "Madrid", timezone: "Europe/Madrid", cities: { "Madrid": "Europe/Madrid", "Barcelona": "Europe/Madrid", "Valencia": "Europe/Madrid", "Seville": "Europe/Madrid", "Zaragoza": "Europe/Madrid", "Malaga": "Europe/Madrid", "Murcia": "Europe/Madrid", "Palma": "Europe/Madrid", "Las Palmas (Canary)": "Atlantic/Canary", "Bilbao": "Europe/Madrid" }},
+            "sri lanka": { capital: "Colombo", timezone: "Asia/Colombo", cities: { "Colombo": "Asia/Colombo", "Kandy": "Asia/Colombo", "Galle": "Asia/Colombo", "Jaffna": "Asia/Colombo", "Negombo": "Asia/Colombo" }},
+            "sudan": { capital: "Khartoum", timezone: "Africa/Khartoum", cities: { "Khartoum": "Africa/Khartoum", "Omdurman": "Africa/Khartoum", "Nyala": "Africa/Khartoum", "Port Sudan": "Africa/Khartoum", "Kassala": "Africa/Khartoum" }},
+            "suriname": { capital: "Paramaribo", timezone: "America/Paramaribo", cities: { "Paramaribo": "America/Paramaribo", "Lelydorp": "America/Paramaribo", "Nieuw Nickerie": "America/Paramaribo", "Moengo": "America/Paramaribo", "Meerzorg": "America/Paramaribo" }},
+            "sweden": { capital: "Stockholm", timezone: "Europe/Stockholm", cities: { "Stockholm": "Europe/Stockholm", "Gothenburg": "Europe/Stockholm", "Malmo": "Europe/Stockholm", "Uppsala": "Europe/Stockholm", "Vasteras": "Europe/Stockholm" }},
+            "switzerland": { capital: "Bern", timezone: "Europe/Zurich", cities: { "Zurich": "Europe/Zurich", "Geneva": "Europe/Zurich", "Basel": "Europe/Zurich", "Lausanne": "Europe/Zurich", "Bern": "Europe/Zurich" }},
+            "syria": { capital: "Damascus", timezone: "Asia/Damascus", cities: { "Aleppo": "Asia/Damascus", "Damascus": "Asia/Damascus", "Homs": "Asia/Damascus", "Latakia": "Asia/Damascus", "Hama": "Asia/Damascus" }},
+            "tajikistan": { capital: "Dushanbe", timezone: "Asia/Dushanbe", cities: { "Dushanbe": "Asia/Dushanbe", "Khujand": "Asia/Dushanbe", "Kulob": "Asia/Dushanbe", "Qurghonteppa": "Asia/Dushanbe", "Istaravshan": "Asia/Dushanbe" }},
+            "tanzania": { capital: "Dodoma", timezone: "Africa/Dar_es_Salaam", cities: { "Dar es Salaam": "Africa/Dar_es_Salaam", "Mwanza": "Africa/Dar_es_Salaam", "Zanzibar City": "Africa/Dar_es_Salaam", "Arusha": "Africa/Dar_es_Salaam", "Mbeya": "Africa/Dar_es_Salaam", "Dodoma": "Africa/Dar_es_Salaam" }},
+            "thailand": { capital: "Bangkok", timezone: "Asia/Bangkok", cities: { "Bangkok": "Asia/Bangkok", "Nonthaburi": "Asia/Bangkok", "Nakhon Ratchasima": "Asia/Bangkok", "Chiang Mai": "Asia/Bangkok", "Hat Yai": "Asia/Bangkok", "Phuket": "Asia/Bangkok" }},
+            "timor-leste": { capital: "Dili", timezone: "Asia/Dili", cities: { "Dili": "Asia/Dili", "Baucau": "Asia/Dili", "Maliana": "Asia/Dili", "Suai": "Asia/Dili", "Lospalos": "Asia/Dili" }},
+            "togo": { capital: "Lome", timezone: "Africa/Lome", cities: { "Lome": "Africa/Lome", "Sokode": "Africa/Lome", "Kara": "Africa/Lome", "Kpalime": "Africa/Lome", "Atakpame": "Africa/Lome" }},
+            "tonga": { capital: "Nuku'alofa", timezone: "Pacific/Tongatapu", cities: { "Nuku'alofa": "Pacific/Tongatapu", "Neiafu": "Pacific/Tongatapu", "Haveluloto": "Pacific/Tongatapu", "Vaini": "Pacific/Tongatapu", "Pangai": "Pacific/Tongatapu" }},
+            "trinidad and tobago": { capital: "Port of Spain", timezone: "America/Port_of_Spain", cities: { "Chaguanas": "America/Port_of_Spain", "San Fernando": "America/Port_of_Spain", "Port of Spain": "America/Port_of_Spain", "Arima": "America/Port_of_Spain", "Point Fortin": "America/Port_of_Spain" }},
+            "tunisia": { capital: "Tunis", timezone: "Africa/Tunis", cities: { "Tunis": "Africa/Tunis", "Sfax": "Africa/Tunis", "Sousse": "Africa/Tunis", "Ettadhamen": "Africa/Tunis", "Kairouan": "Africa/Tunis" }},
+            "turkey": { capital: "Ankara", timezone: "Europe/Istanbul", cities: { "Istanbul": "Europe/Istanbul", "Ankara": "Europe/Istanbul", "Izmir": "Europe/Istanbul", "Bursa": "Europe/Istanbul", "Adana": "Europe/Istanbul", "Gaziantep": "Europe/Istanbul", "Konya": "Europe/Istanbul", "Antalya": "Europe/Istanbul" }},
+            "turkmenistan": { capital: "Ashgabat", timezone: "Asia/Ashgabat", cities: { "Ashgabat": "Asia/Ashgabat", "Turkmenabat": "Asia/Ashgabat", "Dasoguz": "Asia/Ashgabat", "Mary": "Asia/Ashgabat", "Balkanabat": "Asia/Ashgabat" }},
+            "tuvalu": { capital: "Funafuti", timezone: "Pacific/Funafuti", cities: { "Funafuti": "Pacific/Funafuti", "Alapi": "Pacific/Funafuti", "Senala": "Pacific/Funafuti", "Teone": "Pacific/Funafuti", "Vaiaku": "Pacific/Funafuti" }},
+            "uganda": { capital: "Kampala", timezone: "Africa/Kampala", cities: { "Kampala": "Africa/Kampala", "Nansana": "Africa/Kampala", "Kira": "Africa/Kampala", "Makindye": "Africa/Kampala", "Mbarara": "Africa/Kampala" }},
+            "ukraine": { capital: "Kyiv", timezone: "Europe/Kyiv", cities: { "Kyiv": "Europe/Kyiv", "Kharkiv": "Europe/Kyiv", "Odesa": "Europe/Kyiv", "Dnipro": "Europe/Kyiv", "Donetsk": "Europe/Kyiv", "Lviv": "Europe/Kyiv", "Zaporizhzhia": "Europe/Kyiv" }},
+            "united arab emirates": { capital: "Abu Dhabi", timezone: "Asia/Dubai", cities: { "Dubai": "Asia/Dubai", "Abu Dhabi": "Asia/Dubai", "Sharjah": "Asia/Dubai", "Al Ain": "Asia/Dubai", "Ajman": "Asia/Dubai", "Ras Al Khaimah": "Asia/Dubai" }},
+            "united kingdom": { capital: "London", timezone: "Europe/London", cities: { "London": "Europe/London", "Manchester": "Europe/London", "Birmingham": "Europe/London", "Liverpool": "Europe/London", "Leeds": "Europe/London", "Glasgow": "Europe/London", "Sheffield": "Europe/London", "Bristol": "Europe/London", "Edinburgh": "Europe/London", "Belfast": "Europe/London", "Cardiff": "Europe/London" }},
+            "united states": { capital: "Washington DC", timezone: "America/New_York", cities: { "New York": "America/New_York", "Los Angeles": "America/Los_Angeles", "Chicago": "America/Chicago", "Houston": "America/Chicago", "Phoenix": "America/Phoenix", "Philadelphia": "America/New_York", "San Antonio": "America/Chicago", "San Diego": "America/Los_Angeles", "Dallas": "America/Chicago", "San Jose": "America/Los_Angeles", "Austin": "America/Chicago", "Jacksonville": "America/New_York", "San Francisco": "America/Los_Angeles", "Seattle": "America/Los_Angeles", "Denver": "America/Denver", "Washington DC": "America/New_York", "Boston": "America/New_York", "Detroit": "America/Detroit", "Honolulu": "Pacific/Honolulu", "Anchorage": "America/Anchorage" }},
+            "uruguay": { capital: "Montevideo", timezone: "America/Montevideo", cities: { "Montevideo": "America/Montevideo", "Salto": "America/Montevideo", "Ciudad de la Costa": "America/Montevideo", "Paysandu": "America/Montevideo", "Las Piedras": "America/Montevideo" }},
+            "uzbekistan": { capital: "Tashkent", timezone: "Asia/Tashkent", cities: { "Tashkent": "Asia/Tashkent", "Namangan": "Asia/Tashkent", "Samarkand": "Asia/Tashkent", "Andijan": "Asia/Tashkent", "Bukhara": "Asia/Tashkent" }},
+            "vanuatu": { capital: "Port Vila", timezone: "Pacific/Efate", cities: { "Port Vila": "Pacific/Efate", "Luganville": "Pacific/Efate", "Norsup": "Pacific/Efate", "Port-Olry": "Pacific/Efate", "Isangel": "Pacific/Efate" }},
+            "vatican city (holy see)": { capital: "Vatican City", timezone: "Europe/Vatican", cities: { "Vatican City": "Europe/Vatican" }},
+            "venezuela": { capital: "Caracas", timezone: "America/Caracas", cities: { "Caracas": "America/Caracas", "Maracaibo": "America/Caracas", "Valencia": "America/Caracas", "Barquisimeto": "America/Caracas", "Maracay": "America/Caracas" }},
+            "vietnam": { capital: "Hanoi", timezone: "Asia/Ho_Chi_Minh", cities: { "Ho Chi Minh City": "Asia/Ho_Chi_Minh", "Hanoi": "Asia/Ho_Chi_Minh", "Hai Phong": "Asia/Ho_Chi_Minh", "Can Tho": "Asia/Ho_Chi_Minh", "Da Nang": "Asia/Ho_Chi_Minh", "Bien Hoa": "Asia/Ho_Chi_Minh", "Nha Trang": "Asia/Ho_Chi_Minh" }},
+            "yemen": { capital: "Sana'a", timezone: "Asia/Aden", cities: { "Sana'a": "Asia/Aden", "Aden": "Asia/Aden", "Taiz": "Asia/Aden", "Al Hudaydah": "Asia/Aden", "Mukalla": "Asia/Aden" }},
+            "zambia": { capital: "Lusaka", timezone: "Africa/Lusaka", cities: { "Lusaka": "Africa/Lusaka", "Kitwe": "Africa/Lusaka", "Ndola": "Africa/Lusaka", "Kabwe": "Africa/Lusaka", "Chingola": "Africa/Lusaka" }},
+            "zimbabwe": { capital: "Harare", timezone: "Africa/Harare", cities: { "Harare": "Africa/Harare", "Bulawayo": "Africa/Harare", "Chitungwiza": "Africa/Harare", "Mutare": "Africa/Harare", "Gweru": "Africa/Harare" }}
+        };
+
+        // Aliases mapping to main database keys
+        const aliases = {
+            "usa": "united states",
+            "us": "united states",
+            "uk": "united kingdom",
+            "great britain": "united kingdom",
+            "uae": "united arab emirates",
+            "vatican": "vatican city (holy see)",
+            "vatican city": "vatican city (holy see)",
+            "czech republic": "czechia",
+            "swaziland": "eswatini",
+            "congo": "congo (congo-brazzaville)",
+            "burma": "myanmar (burma)",
+            "myanmar": "myanmar (burma)",
+            "korea": "south korea"
         };
 
         const searchInput = document.getElementById('searchInput');
@@ -450,8 +565,7 @@
         const subZonesContainer = document.getElementById('subZonesContainer');
 
         let currentInterval = null;
-        let activeTimezones = [];
-        let activeCountryName = "";
+        let activeCountryData = null;
 
         // Listeners
         searchBtn.addEventListener('click', performSearch);
@@ -460,8 +574,13 @@
         });
 
         function performSearch() {
-            const query = searchInput.value.trim().toLowerCase();
+            let query = searchInput.value.trim().toLowerCase();
             if (!query) return;
+
+            // Resolve alias
+            if (aliases[query]) {
+                query = aliases[query];
+            }
 
             // Hide old results
             resultWrapper.style.display = 'none';
@@ -475,13 +594,22 @@
             setTimeout(() => {
                 loader.style.display = 'none';
                 
-                if (countryTimezones[query]) {
-                    activeTimezones = countryTimezones[query];
-                    // Capitalize nicely
-                    activeCountryName = query.replace(/\b\w/g, l => l.toUpperCase());
-                    if(query === 'usa' || query === 'uae' || query === 'uk' || query === 'us') {
-                        activeCountryName = query.toUpperCase();
+                if (worldDatabase[query]) {
+                    activeCountryData = worldDatabase[query];
+                    
+                    // Format Country Name (Special case abbreviations)
+                    let formattedName = query.replace(/\b\w/g, l => l.toUpperCase());
+                    if(['united states', 'united kingdom', 'united arab emirates'].includes(query)) {
+                        formattedName = query.split(' ').map(w => w[0].toUpperCase()).join('');
+                        if (query === 'united states') formattedName = "USA";
+                        if (query === 'united kingdom') formattedName = "UK";
+                        if (query === 'united arab emirates') formattedName = "UAE";
                     }
+                    if (query === "vatican city (holy see)") formattedName = "Vatican City";
+                    if (query === "congo (congo-brazzaville)") formattedName = "Congo";
+                    if (query === "myanmar (burma)") formattedName = "Myanmar";
+                    
+                    activeCountryData.displayName = formattedName;
                     
                     setupResultUI();
                     updateClocks();
@@ -490,89 +618,77 @@
                 } else {
                     errorMessage.style.display = 'block';
                 }
-            }, 600); // Simulated delay for cyberpunk feel
+            }, 500); // UI visual delay
+        }
+
+        function getGmtOffsetString(date, tz) {
+            try {
+                // Gets short offset like GMT+6, GMT-4, etc.
+                const parts = new Intl.DateTimeFormat('en-US', { timeZone: tz, timeZoneName: 'shortOffset' }).formatToParts(date);
+                return parts.find(p => p.type === 'timeZoneName').value;
+            } catch(e) {
+                return tz;
+            }
         }
 
         function setupResultUI() {
-            countryNameEl.textContent = activeCountryName;
+            countryNameEl.textContent = activeCountryData.displayName;
+            subZonesContainer.innerHTML = '';
             
-            if (activeTimezones.length > 1) {
-                subZonesContainer.style.display = 'flex';
-                subZonesContainer.innerHTML = '';
+            const cities = activeCountryData.cities;
+            const cityNames = Object.keys(cities);
+
+            // Populate the scrollable list of cities
+            cityNames.forEach((cityName, index) => {
+                const tz = cities[cityName];
+                const div = document.createElement('div');
+                div.className = 'sub-zone-item';
                 
-                // Start from index 1 for subzones
-                for(let i = 1; i < activeTimezones.length; i++) {
-                    const zoneRaw = activeTimezones[i];
-                    const div = document.createElement('div');
-                    div.className = 'sub-zone-item';
-                    
-                    const nameSpan = document.createElement('span');
-                    nameSpan.className = 'sub-zone-name';
-                    
-                    // Handle custom city names using | separator
-                    if(zoneRaw.includes('|')) {
-                        nameSpan.textContent = zoneRaw.split('|')[1];
-                    } else {
-                        nameSpan.textContent = zoneRaw.split('/').pop().replace('_', ' ');
-                    }
-                    
-                    const timeSpan = document.createElement('span');
-                    timeSpan.className = 'sub-zone-time';
-                    timeSpan.id = `subzone-${i}`;
-                    
-                    div.appendChild(nameSpan);
-                    div.appendChild(timeSpan);
-                    subZonesContainer.appendChild(div);
-                }
-            } else {
-                subZonesContainer.style.display = 'none';
-            }
+                const nameSpan = document.createElement('span');
+                nameSpan.className = 'sub-zone-name';
+                nameSpan.textContent = cityName;
+                
+                const timeSpan = document.createElement('span');
+                timeSpan.className = 'sub-zone-time';
+                timeSpan.id = `city-time-${index}`;
+                
+                div.appendChild(nameSpan);
+                div.appendChild(timeSpan);
+                subZonesContainer.appendChild(div);
+            });
         }
 
         function updateClocks() {
             const now = new Date();
             
-            // Format Primary Zone (Index 0)
-            const primaryTzRaw = activeTimezones[0];
-            const primaryTz = primaryTzRaw.includes('|') ? primaryTzRaw.split('|')[0] : primaryTzRaw;
-            const primaryData = getFormattedTime(now, primaryTz);
+            // Format Capital Zone
+            const capTz = activeCountryData.timezone;
+            const capTimeOpts = { timeZone: capTz, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+            const capDateOpts = { timeZone: capTz, weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' };
             
-            primaryTimeEl.textContent = primaryData.time;
-            primaryDateEl.textContent = primaryData.date;
+            const capTimeStr = new Intl.DateTimeFormat('en-US', capTimeOpts).format(now);
+            const capDateStr = new Intl.DateTimeFormat('en-US', capDateOpts).format(now);
+            const capOffsetStr = getGmtOffsetString(now, capTz);
             
-            // Clean up tz string display (e.g. "EST - America/New_York")
-            let friendlyZoneName = primaryTz.split('/').pop().replace('_', ' ');
-            primaryTimezoneEl.textContent = `${primaryData.tzName} [${friendlyZoneName}]`;
+            primaryTimeEl.textContent = capTimeStr;
+            primaryDateEl.textContent = capDateStr;
+            primaryTimezoneEl.textContent = `${capOffsetStr} (${activeCountryData.capital})`;
 
-            // Format Secondary Zones
-            for(let i = 1; i < activeTimezones.length; i++) {
-                const subTzRaw = activeTimezones[i];
-                const subTz = subTzRaw.includes('|') ? subTzRaw.split('|')[0] : subTzRaw;
-                const subData = getFormattedTime(now, subTz);
-                const subEl = document.getElementById(`subzone-${i}`);
+            // Format City Zones
+            const cities = activeCountryData.cities;
+            const cityNames = Object.keys(cities);
+            
+            cityNames.forEach((cityName, index) => {
+                const tz = cities[cityName];
+                const cityTimeOpts = { timeZone: tz, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+                const timeStr = new Intl.DateTimeFormat('en-US', cityTimeOpts).format(now);
+                const offsetStr = getGmtOffsetString(now, tz);
+                
+                const subEl = document.getElementById(`city-time-${index}`);
                 if(subEl) {
-                    subEl.textContent = `${subData.time} (${subData.tzName})`;
+                    subEl.textContent = `${timeStr} (${offsetStr})`;
                 }
-            }
-        }
-
-        function getFormattedTime(dateObj, tz) {
-            const timeOpts = { timeZone: tz, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-            const dateOpts = { timeZone: tz, weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' };
-            const tzOpts = { timeZone: tz, timeZoneName: 'short' };
-
-            const timeStr = new Intl.DateTimeFormat('en-US', timeOpts).format(dateObj);
-            const dateStr = new Intl.DateTimeFormat('en-US', dateOpts).format(dateObj);
-            
-            let tzStr = "";
-            try {
-                const parts = new Intl.DateTimeFormat('en-US', tzOpts).formatToParts(dateObj);
-                tzStr = parts.find(p => p.type === 'timeZoneName').value;
-            } catch(e) {
-                tzStr = tz; // Fallback
-            }
-
-            return { time: timeStr, date: dateStr, tzName: tzStr };
+            });
         }
     </script>
 </body>
